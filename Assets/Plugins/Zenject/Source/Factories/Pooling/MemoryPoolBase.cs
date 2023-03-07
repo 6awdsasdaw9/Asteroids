@@ -277,7 +277,7 @@ namespace Zenject
             // Optional
         }
 
-        protected virtual void OnCreated(TContract item)
+        protected virtual void OnCreated(TContract bullet)
         {
             // Optional
         }

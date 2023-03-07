@@ -15,11 +15,11 @@ namespace Zenject
         {
         }
 
-        protected override void OnCreated(TValue item)
+        protected override void OnCreated(TValue bullet)
         {
-            item.gameObject.SetActive(false);
+            bullet.gameObject.SetActive(false);
             // Record the original parent which will be set to whatever is used in the UnderTransform method
-            _originalParent = item.transform.parent;
+            _originalParent = bullet.transform.parent;
         }
 
         protected override void OnDestroyed(TValue item)
@@ -56,11 +56,11 @@ namespace Zenject
         {
         }
 
-        protected override void OnCreated(TValue item)
+        protected override void OnCreated(TValue bullet)
         {
-            item.gameObject.SetActive(false);
+            bullet.gameObject.SetActive(false);
             // Record the original parent which will be set to whatever is used in the UnderTransform method
-            _originalParent = item.transform.parent;
+            _originalParent = bullet.transform.parent;
         }
 
         protected override void OnDestroyed(TValue item)
@@ -98,11 +98,11 @@ namespace Zenject
         {
         }
 
-        protected override void OnCreated(TValue item)
+        protected override void OnCreated(TValue bullet)
         {
-            item.gameObject.SetActive(false);
+            bullet.gameObject.SetActive(false);
             // Record the original parent which will be set to whatever is used in the UnderTransform method
-            _originalParent = item.transform.parent;
+            _originalParent = bullet.transform.parent;
         }
 
         protected override void OnDestroyed(TValue item)
@@ -140,11 +140,11 @@ namespace Zenject
         {
         }
 
-        protected override void OnCreated(TValue item)
+        protected override void OnCreated(TValue bullet)
         {
-            item.gameObject.SetActive(false);
+            bullet.gameObject.SetActive(false);
             // Record the original parent which will be set to whatever is used in the UnderTransform method
-            _originalParent = item.transform.parent;
+            _originalParent = bullet.transform.parent;
         }
 
         protected override void OnDestroyed(TValue item)
@@ -182,11 +182,11 @@ namespace Zenject
         {
         }
 
-        protected override void OnCreated(TValue item)
+        protected override void OnCreated(TValue bullet)
         {
-            item.gameObject.SetActive(false);
+            bullet.gameObject.SetActive(false);
             // Record the original parent which will be set to whatever is used in the UnderTransform method
-            _originalParent = item.transform.parent;
+            _originalParent = bullet.transform.parent;
         }
 
         protected override void OnDestroyed(TValue item)
@@ -224,11 +224,11 @@ namespace Zenject
         {
         }
 
-        protected override void OnCreated(TValue item)
+        protected override void OnCreated(TValue bullet)
         {
-            item.gameObject.SetActive(false);
+            bullet.gameObject.SetActive(false);
             // Record the original parent which will be set to whatever is used in the UnderTransform method
-            _originalParent = item.transform.parent;
+            _originalParent = bullet.transform.parent;
         }
 
         protected override void OnDestroyed(TValue item)

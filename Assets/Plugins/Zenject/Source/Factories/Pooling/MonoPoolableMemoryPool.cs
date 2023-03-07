@@ -13,10 +13,10 @@ namespace Zenject
         {
         }
 
-        protected override void OnCreated(TValue item)
+        protected override void OnCreated(TValue bullet)
         {
-            item.gameObject.SetActive(false);
-            _originalParent = item.transform.parent;
+            bullet.gameObject.SetActive(false);
+            _originalParent = bullet.transform.parent;
         }
 
         protected override void OnDestroyed(TValue item)
@@ -54,10 +54,10 @@ namespace Zenject
         {
         }
 
-        protected override void OnCreated(TValue item)
+        protected override void OnCreated(TValue bullet)
         {
-            item.gameObject.SetActive(false);
-            _originalParent = item.transform.parent;
+            bullet.gameObject.SetActive(false);
+            _originalParent = bullet.transform.parent;
         }
 
         protected override void OnDestroyed(TValue item)
@@ -95,10 +95,10 @@ namespace Zenject
         {
         }
 
-        protected override void OnCreated(TValue item)
+        protected override void OnCreated(TValue bullet)
         {
-            item.gameObject.SetActive(false);
-            _originalParent = item.transform.parent;
+            bullet.gameObject.SetActive(false);
+            _originalParent = bullet.transform.parent;
         }
 
         protected override void OnDestroyed(TValue item)
@@ -136,10 +136,10 @@ namespace Zenject
         {
         }
 
-        protected override void OnCreated(TValue item)
+        protected override void OnCreated(TValue bullet)
         {
-            item.gameObject.SetActive(false);
-            _originalParent = item.transform.parent;
+            bullet.gameObject.SetActive(false);
+            _originalParent = bullet.transform.parent;
         }
 
         protected override void OnDestroyed(TValue item)
@@ -177,10 +177,10 @@ namespace Zenject
         {
         }
 
-        protected override void OnCreated(TValue item)
+        protected override void OnCreated(TValue bullet)
         {
-            item.gameObject.SetActive(false);
-            _originalParent = item.transform.parent;
+            bullet.gameObject.SetActive(false);
+            _originalParent = bullet.transform.parent;
         }
 
         protected override void OnDestroyed(TValue item)
@@ -218,10 +218,10 @@ namespace Zenject
         {
         }
 
-        protected override void OnCreated(TValue item)
+        protected override void OnCreated(TValue bullet)
         {
-            item.gameObject.SetActive(false);
-            _originalParent = item.transform.parent;
+            bullet.gameObject.SetActive(false);
+            _originalParent = bullet.transform.parent;
         }
 
         protected override void OnDestroyed(TValue item)
@@ -259,10 +259,10 @@ namespace Zenject
         {
         }
 
-        protected override void OnCreated(TValue item)
+        protected override void OnCreated(TValue bullet)
         {
-            item.gameObject.SetActive(false);
-            _originalParent = item.transform.parent;
+            bullet.gameObject.SetActive(false);
+            _originalParent = bullet.transform.parent;
         }
 
         protected override void OnDestroyed(TValue item)
@@ -300,10 +300,10 @@ namespace Zenject
         {
         }
 
-        protected override void OnCreated(TValue item)
+        protected override void OnCreated(TValue bullet)
         {
-            item.gameObject.SetActive(false);
-            _originalParent = item.transform.parent;
+            bullet.gameObject.SetActive(false);
+            _originalParent = bullet.transform.parent;
         }
 
         protected override void OnDestroyed(TValue item)
@@ -341,10 +341,10 @@ namespace Zenject
         {
         }
 
-        protected override void OnCreated(TValue item)
+        protected override void OnCreated(TValue bullet)
         {
-            item.gameObject.SetActive(false);
-            _originalParent = item.transform.parent;
+            bullet.gameObject.SetActive(false);
+            _originalParent = bullet.transform.parent;
         }
 
         protected override void OnDestroyed(TValue item)
