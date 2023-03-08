@@ -1,12 +1,19 @@
-﻿using UnityEditor;
-using UnityEngine;
+﻿using Code.Data;
 using Zenject;
 
 namespace Code.Infrastructure.Installers
 {
     public class LevelInstaller: MonoInstaller<LevelInstaller>
     {
-        [SerializeField] private GameObject playerBulletPrefab;
+        private GameSettings _settings;
+        private GamePrefabs _prefabs;
+
+        [Inject]
+        private void Construct(GameSettings settings,GamePrefabs prefabs)
+        {
+            _settings = settings;
+            _prefabs = prefabs;
+        }
 
         public override void InstallBindings()
         {
@@ -16,10 +23,12 @@ namespace Code.Infrastructure.Installers
 
         private void BindItemPool()
         {
-            /*Container.BindMemoryPool<>().WithInitialSize(10)
-                .FromComponentInNewPrefab(playerBulletPrefab)
-                .UnderTransformGroup("Items");
-            Container.BindInterfacesTo<>().AsSingle();*/
+            Container.BindMemoryPool<Bullet, Bullet.Pool>()
+                .WithInitialSize(_settings.playerBulletPoolSize)
+                .ExpandByOneAtATime()
+                .FromComponentInNewPrefab(_prefabs.playerBullet)
+                .UnderTransformGroup("Player Bullets");
+          
         }
     }
 }

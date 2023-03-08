@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Code.Player
 {
-    public class PlayerMove : MonoBehaviour
+    public class PlayerMove : MonoBehaviour, IDetectable
     {
         [SerializeField] private InputController inputController;
         [SerializeField] private Rigidbody2D _rb;
@@ -22,9 +22,9 @@ namespace Code.Player
             _updateObservable
                 .Subscribe(_ => TurnForward())
                 .AddTo(this);
-            _updateObservable
+            /*_updateObservable
                 .Subscribe(_ => ScreenWrap())
-                .AddTo(this);
+                .AddTo(this);*/
         }
 
         private void OnDisable()
@@ -37,13 +37,7 @@ namespace Code.Player
             Vector2 direction = inputController.mousePosition - (Vector2)transform.position;
             transform.up = direction.normalized;
         }
-
-        private void Acceleration()
-        {
-            _rb.velocity = new Vector2(Mathf.Clamp(_rb.velocity.x, -_maxSpeed, _maxSpeed),
-                Mathf.Clamp(_rb.velocity.y, -_maxSpeed, _maxSpeed));
-        }
-    
+        
         private void MoveToForward()
         {
             _rb.AddForce(transform.up * _speed);
@@ -72,6 +66,11 @@ namespace Code.Player
             }
 
             transform.position = Camera.main.ScreenToWorldPoint(position);
+        }
+
+        public void OnEnter()
+        {
+            ScreenWrap();
         }
     }
 }

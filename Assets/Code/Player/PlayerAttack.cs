@@ -1,18 +1,26 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using Zenject;
 
 namespace Code.Player
 {
     public class PlayerAttack : MonoBehaviour
     {
-        
-        [Inject] private BulletPool _bulletPool; // Inject the pool
-        private float _projectileSpeed;
+        [Inject] private Bullet.Pool _bulletPool;
+
+
+        private void Update()
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                Fire();
+            }
+        }
 
         public void Fire()
         {
-            /*var projectile = _projectilePool.Spawn(transform.position, transform.rotation);
-            projectile.GetComponent<Rigidbody2D>().velocity = transform.up * _projectileSpeed;*/
+            _bulletPool.Spawn(transform.position, transform.up);
         }
+        
     }
 }

@@ -1,14 +1,17 @@
-﻿using Code.Infrastructure.StateMachine;
+﻿using Code.Data;
+using Code.Infrastructure.StateMachine;
 using Code.Infrastructure.StateMachine.States;
 using Code.Logic;
 using Code.Services;
+using UnityEngine;
 using Zenject;
 
 namespace Code.Infrastructure.Installers
 {
     public class GameInstaller : MonoInstaller<GameInstaller>, IInitializable, ICoroutineRunner
     {
-        public LoadingCurtain curtain;
+        [SerializeField] private LoadingCurtain curtain;
+  
         
         public override void InstallBindings()
         {

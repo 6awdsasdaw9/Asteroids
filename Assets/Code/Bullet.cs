@@ -1,24 +1,36 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using Zenject;
+
 namespace Code
 {
-    public class Bullet : MonoBehaviour
+    public class Bullet : MonoBehaviour , IDetectable
     {
         [SerializeField] private Rigidbody2D _rb;
-        [SerializeField,Range(1,5)] private float _speed = 1;
+        [SerializeField, Range(1, 10)] private float _speed = 1;
+        private Pool _pool;
 
-        private void Move(Vector2 direction)
+        [Inject]
+        private void Construct(Pool pool)
         {
-            _rb.velocity = direction * _speed;
+            _pool = pool;
+        }
+
+        private void SpawnBullet(Vector3 position,Vector2 forward)
+        {
+            transform.position = position;
+            _rb.velocity = forward * _speed;
         }
         
-        
-        public class Pool : MemoryPool<Bullet,Vector2>
+        public void OnEnter()
         {
-            protected override void Reinitialize(Bullet bullet, Vector2 direction)
+            _pool.Despawn(this);
+        }
+
+        public class Pool : MonoMemoryPool<Vector3,Vector2,Bullet>
+        {
+            protected override void Reinitialize(Vector3 position,Vector2 forward,Bullet bullet)
             {
-                bullet.Move(direction);
+                bullet.SpawnBullet(position,forward);
             }
         }
     }
