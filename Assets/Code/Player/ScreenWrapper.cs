@@ -5,7 +5,7 @@ namespace Code.Player
 {
     public class ScreenWrapper : MonoBehaviour, IDetectable
     {
-        public void Wrap()
+        private void Wrap()
         {
             Vector3 position = Camera.main.WorldToScreenPoint(transform.position);
 
@@ -24,7 +24,7 @@ namespace Code.Player
             transform.position = Camera.main.ScreenToWorldPoint(position);
         }
 
-        public void OnEnter()
+        public void OnTriggerEnter()
         {
             Wrap();
         }

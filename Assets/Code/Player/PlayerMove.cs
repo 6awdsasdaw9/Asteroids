@@ -1,4 +1,5 @@
 using System;
+using Code.Data;
 using Code.Services;
 using UniRx;
 using UniRx.Triggers;
@@ -13,16 +14,18 @@ namespace Code.Player
         [SerializeField] private Rigidbody2D _rb;
         [SerializeField] private Fuel _fuel;
 
-        [SerializeField, Range(0.5f, 5)] private float _speed = 1;
-        [SerializeField, Range(1, 10)] private float _maxSpeed = 2.8f;
+        private float _speed;
+        private float _maxSpeed;
         
         private InputController _inputController;
         private IObservable<Unit> _updateObservable;
 
         [Inject]
-        private void Construct(InputController inputController)
+        private void Construct(InputController inputController,GameConfig config)
         {
             _inputController = inputController;
+            _speed = config.playerSpeed;
+            _maxSpeed = config.playerMaxSpeed;
         }
 
         private void Awake()

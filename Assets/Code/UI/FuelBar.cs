@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace Code.UI
 {
-    public class Bar : MonoBehaviour
+    public class FuelBar : MonoBehaviour
     {
         public Image _image;
 

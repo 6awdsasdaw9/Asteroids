@@ -1,6 +1,6 @@
 using System;
 using Code.Data;
-using Code.Stats;using UnityEngine;
+using UnityEngine;
 using Zenject;
 
 public class Fuel : MonoBehaviour

@@ -1,4 +1,5 @@
-﻿using Code.Player;
+﻿using Code.Enemy;
+using Code.Player;
 using UnityEngine;
 
 namespace Code.Data
@@ -9,5 +10,9 @@ namespace Code.Data
         public PlayerMove player;
         public Bullet playerBullet;
         public UIDisplay hud;
+        public GameObject hpIcon;
+
+        public EnemyMovement asteroid;
+     
     }
 }

@@ -12,6 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 144c3835580947e6908ab295594a3be2, type: 3}
   m_Name: GameConfig
   m_EditorClassIdentifier: 
+  playerSpeed: 1
+  playerMaxSpeed: 2.8
+  playerMaxHP: 3
   maxFuel: 100
   fuelForMove: 0.01
   fuelFromEnemy: 20
+  playerBulletSpeed: 9
+  enemySpeed: 2
+  enemySpawnCooldown: 5

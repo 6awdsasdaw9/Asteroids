@@ -1,4 +1,7 @@
-﻿using Code.Services;
+﻿using System;
+using Code.Data;
+using Code.Services;
+using Code.Stats;
 using UnityEngine;
 using Zenject;
 
@@ -7,13 +10,22 @@ namespace Code
     public class Bullet : MonoBehaviour , IDetectable
     {
         [SerializeField] private Rigidbody2D _rb;
-        [SerializeField, Range(1, 10)] private float _speed = 1;
+        private float _speed;
         private Pool _pool;
 
         [Inject]
-        private void Construct(Pool pool)
+        private void Construct(Pool pool,GameConfig config)
         {
             _pool = pool;
+            _speed = config.playerBulletSpeed;
+        }
+
+        private void OnCollisionEnter2D(Collision2D col)
+        {
+            if (TryGetComponent(out IHealth hp))
+            {
+                hp.TakeDamage();
+            }
         }
 
         private void SpawnBullet(Vector3 position,Vector2 forward)
@@ -22,7 +34,7 @@ namespace Code
             _rb.velocity = forward * _speed;
         }
         
-        public void OnEnter()
+        public void OnTriggerEnter()
         {
             _pool.Despawn(this);
         }
