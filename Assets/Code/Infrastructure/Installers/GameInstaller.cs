@@ -1,8 +1,7 @@
 ﻿using Code.Data;
 using Code.Infrastructure.StateMachine;
 using Code.Infrastructure.StateMachine.States;
-using Code.Logic;
-using Code.Services;
+using Services;
 using UnityEngine;
 using Zenject;
 

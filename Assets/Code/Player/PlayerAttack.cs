@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Code.Services;
+using UniRx;
+using UniRx.Triggers;
 using UnityEngine;
 using Zenject;
 
@@ -6,21 +8,25 @@ namespace Code.Player
 {
     public class PlayerAttack : MonoBehaviour
     {
-        [Inject] private Bullet.Pool _bulletPool;
+        private InputController _inputController;
+        private Bullet.Pool _bulletPool;
 
-
-        private void Update()
+        [Inject]
+        private void Construct(InputController inputController, Bullet.Pool bulletPool)
         {
-            if (Input.GetMouseButtonDown(0))
-            {
-                Fire();
-            }
+            _inputController = inputController;
+            _bulletPool = bulletPool;
         }
 
-        public void Fire()
+        private void Awake()
         {
-            _bulletPool.Spawn(transform.position, transform.up);
+            this.UpdateAsObservable()
+                .Where(_ => _inputController.isPressAttack)
+                .Subscribe(_ => Fire())
+                .AddTo(this);
         }
         
+        private void Fire() => 
+            _bulletPool.Spawn(transform.position, transform.up);
     }
 }

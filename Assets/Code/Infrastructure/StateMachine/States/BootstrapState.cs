@@ -1,6 +1,4 @@
-using Code.Services;
-using DefaultNamespace;
-
+using Services;
 
 namespace Code.Infrastructure.StateMachine.States
 {

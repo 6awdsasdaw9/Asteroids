@@ -1,8 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Code.Infrastructure.StateMachine.States;
-using Code.Logic;
-using Code.Services;
+using Services;
 
 namespace Code.Infrastructure.StateMachine
 {

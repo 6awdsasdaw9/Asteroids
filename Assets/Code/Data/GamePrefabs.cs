@@ -8,5 +8,6 @@ namespace Code.Data
     {
         public PlayerMove player;
         public Bullet playerBullet;
+        public UIDisplay hud;
     }
 }

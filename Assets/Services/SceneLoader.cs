@@ -4,7 +4,7 @@ using Code.Infrastructure;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Code.Services
+namespace Services
 {
     public class SceneLoader
     {
