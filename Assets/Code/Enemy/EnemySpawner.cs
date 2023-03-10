@@ -40,14 +40,14 @@ namespace Code.Enemy
         private void CreateBigAsteroid()
         {
             var enemy = _bigAsteroidPool.Spawn();
-            enemy.GetComponent<BigAsteroidHealth>().OnDeath += CreateSmallAsteroids;
+            enemy.health.OnDeath += CreateSmallAsteroids;
         }
 
-        private void CreateSmallAsteroids(BigAsteroid bigAsteroid)
+        private void CreateSmallAsteroids(Transform bigAsteroid)
         {
             for (byte i = 0; i < _createSmallAsteroid; i++)
             {
-                _smallAsteroidPool.Spawn(bigAsteroid.transform.position);
+                _smallAsteroidPool.Spawn(bigAsteroid.position);
             }
         }
 

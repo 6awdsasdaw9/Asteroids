@@ -1,13 +1,15 @@
 ﻿using Code.Data;
 using Code.Player;
+using UnityEditorInternal;
 using UnityEngine;
 using Zenject;
 
 
 namespace Code.Enemy.SmallAsteroid
 {
-    public class SmallAsteroid : MonoBehaviour,IEnemy
+    public class SmallAsteroid : MonoBehaviour,IEnemy, IDespawer
     {
+
         [SerializeField] private Rigidbody2D _rb;
         private float _speed;
         private Pool _pool;
@@ -22,15 +24,13 @@ namespace Code.Enemy.SmallAsteroid
         public void Despawn() => 
             _pool.Despawn(this);
 
-        public void SetPosition(Vector3 position)
-        {
+        public void SetPosition(Vector3 position) => 
             transform.position = position;
-        }
 
         public void Move()
         {
-            Vector3 randomVector = new Vector3(Random.Range(-1, 1),Random.Range(-1, 1),0).normalized;
-            _rb.AddForce(randomVector * _speed, ForceMode2D.Impulse);
+            Vector3 randomVector = new Vector3(Random.Range(-_speed, _speed),Random.Range(-_speed, _speed),0);
+            _rb.AddForce(randomVector , ForceMode2D.Impulse);
         }
 
         public class Pool : MonoMemoryPool<Vector3,SmallAsteroid>

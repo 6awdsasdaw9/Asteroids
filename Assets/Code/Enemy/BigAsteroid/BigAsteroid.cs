@@ -1,6 +1,5 @@
 ﻿using Code.Data;
 using Code.Player;
-using Code.Stats;
 using UnityEngine;
 using Zenject;
 
@@ -9,6 +8,7 @@ namespace Code.Enemy
     [RequireComponent(typeof(Rigidbody2D), typeof(BigAsteroidHealth))]
     public class BigAsteroid : MonoBehaviour, IEnemy, IDespawer
     {
+        public BigAsteroidHealth health;
         [SerializeField] private Rigidbody2D _rb;
         private Transform _player;
         private float _speed;
@@ -55,6 +55,7 @@ namespace Code.Enemy
         {
             protected override void Reinitialize(BigAsteroid asteroid)
             {
+                asteroid.health.ResetHealth();
                 asteroid.SetPosition(asteroid.GetRandomPoint());
                 asteroid.Move();
             }

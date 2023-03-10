@@ -8,7 +8,7 @@ namespace Code.Enemy
 {
     public class BigAsteroidHealth : MonoBehaviour, IHealth
     {
-        [SerializeField] private BigAsteroid _asteroid;
+        private IDespawer _despawer;
         private byte _currentHP;
         private byte _maxHP;
 
@@ -16,29 +16,30 @@ namespace Code.Enemy
         public byte Max => _maxHP;
 
         public event Action OnStatChanged;
-        public Action<BigAsteroid> OnDeath;
+        public Action<Transform> OnDeath;
 
         [Inject]
         private void Construct(GameConfig config)
         {
             _maxHP = config.bigAsteroidMaxHP;
+            _despawer = GetComponent<IDespawer>();
+        }
+
+        public void ResetHealth()
+        {
             _currentHP = _maxHP;
         }
 
         public void TakeDamage()
         {
-            if (_currentHP <= 0)
-                return;
-            
             _currentHP--;
-            OnStatChanged?.Invoke();
-
-            if (Current > 0) 
-                return;
-
-            OnDeath?.Invoke(_asteroid);
-            Debug.Log("Despawn " + gameObject.name);
-            _asteroid.Despawn();
+            Debug.Log(_currentHP);
+            if (_currentHP <= 0)
+            {
+                OnDeath?.Invoke(transform);
+                OnDeath = null;
+                _despawer.Despawn();
+            }
         }
     }
 }

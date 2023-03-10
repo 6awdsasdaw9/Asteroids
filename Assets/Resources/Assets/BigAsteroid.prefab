@@ -161,6 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 43cf567f5f6e4990b98a8976aef9e994, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: {fileID: 7990493096225762909}
   _rb: {fileID: 7922321379049349254}
 --- !u!114 &7990493096225762909
 MonoBehaviour:
@@ -174,7 +175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4a150ab74804413b323d82be60c74d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _asteroid: {fileID: 663956038}
 --- !u!114 &3943117932629297057
 MonoBehaviour:
   m_ObjectHideFlags: 0

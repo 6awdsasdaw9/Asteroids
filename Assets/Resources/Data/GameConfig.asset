@@ -19,8 +19,8 @@ MonoBehaviour:
   fuelForMove: 0.01
   fuelFromEnemy: 20
   playerBulletSpeed: 9
-  asteroidsSpawnCooldown: 5
-  bigAsteroidSpeed: 2
+  asteroidsSpawnCooldown: 4
+  bigAsteroidSpeed: 3
   bigAsteroidMaxHP: 1
   createSmallAsteroid: 3
   smallAsteroidSpeed: 2.04

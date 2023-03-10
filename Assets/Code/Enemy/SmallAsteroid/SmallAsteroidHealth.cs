@@ -1,39 +1,26 @@
 ﻿using System;
-using Code.Data;
 using Code.Stats;
 using UnityEngine;
-using Zenject;
 
 namespace Code.Enemy.SmallAsteroid
 {
-    public class SmallAsteroidHealth : MonoBehaviour,IHealth
+    public class SmallAsteroidHealth : MonoBehaviour, IHealth
     {
-        [SerializeField] private SmallAsteroid _asteroid;
-        private byte _currentHP;
-        private byte _maxHP;
+        private IDespawer _despawer;
 
-        public byte Current => _currentHP;
-        public byte Max => _maxHP;
+        private void Start()
+        {
+            _despawer = GetComponent<IDespawer>();
+        }
+
 
         public event Action OnStatChanged;
+        public byte Current { get; }
+        public byte Max { get; }
 
-
-        [Inject]
-        private void Construct(GameConfig config)
-        {
-            _maxHP = config.smallAsteroidMaxHP;
-            _currentHP = _maxHP;
-        }
-        
         public void TakeDamage()
         {
-            _currentHP--;
-            OnStatChanged?.Invoke();
-            
-            if (Current <= 0)
-            {
-                _asteroid.Despawn();
-            }
+            _despawer.Despawn();
         }
     }
 }
