@@ -1,4 +1,5 @@
 ﻿using Code.Data;
+using Code.Enemy.SmallAsteroid;
 using UnityEngine;
 using Zenject;
 
@@ -6,28 +7,48 @@ namespace Code.Enemy
 {
     public class EnemySpawner : ITickable
     {
-        private readonly EnemyMovement.Factory _enemyFactory;
-        private  float _cooldown;
+        private readonly BigAsteroid.Pool _bigAsteroidPool;
+        private readonly SmallAsteroid.SmallAsteroid.Pool _smallAsteroidPool;
+        private readonly float _asteroidsSpawnCooldown;
+        private readonly byte _createSmallAsteroid;
         private float _currentCooldown;
 
-        private EnemySpawner(EnemyMovement.Factory enemyFactory, GameConfig config)
+
+        private EnemySpawner(
+            BigAsteroid.Pool bigAsteroidPool,
+            SmallAsteroid.SmallAsteroid.Pool smallAsteroidPool,
+            GameConfig config)
         {
-            _enemyFactory = enemyFactory;
-            _cooldown = config.enemySpawnCooldown;
-            _currentCooldown = _cooldown;
+            _smallAsteroidPool = smallAsteroidPool;
+            _bigAsteroidPool = bigAsteroidPool;
+            _asteroidsSpawnCooldown = config.asteroidsSpawnCooldown;
+            _createSmallAsteroid = config.createSmallAsteroid;
+            _currentCooldown = _asteroidsSpawnCooldown;
         }
 
         public void Tick()
         {
             if (CooldownIsUp())
             {
-                var enemy = _enemyFactory.Create();
-                enemy.SetPosition();
-                enemy.Move();
-                _currentCooldown = _cooldown;
+                CreateBigAsteroid();
+                _currentCooldown = _asteroidsSpawnCooldown;
             }
             else
                 UpdateCooldown();
+        }
+
+        private void CreateBigAsteroid()
+        {
+            var enemy = _bigAsteroidPool.Spawn();
+            enemy.GetComponent<BigAsteroidHealth>().OnDeath += CreateSmallAsteroids;
+        }
+
+        private void CreateSmallAsteroids(BigAsteroid bigAsteroid)
+        {
+            for (byte i = 0; i < _createSmallAsteroid; i++)
+            {
+                _smallAsteroidPool.Spawn(bigAsteroid.transform.position);
+            }
         }
 
         private void UpdateCooldown() =>

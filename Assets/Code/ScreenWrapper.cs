@@ -24,9 +24,7 @@ namespace Code.Player
             transform.position = Camera.main.ScreenToWorldPoint(position);
         }
 
-        public void OnTriggerEnter()
-        {
+        public void OnDetect() => 
             Wrap();
-        }
     }
 }

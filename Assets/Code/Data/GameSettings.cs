@@ -7,6 +7,8 @@ namespace Code.Data
     {
         public int playerBulletPoolSize = 20;
         public int enemyBulletPoolSize = 10;
-        
+
+        public int bigAsteroidsPoolSize = 15;
+        public int smallAsteroidsPoolSize = 20;
     }
 }

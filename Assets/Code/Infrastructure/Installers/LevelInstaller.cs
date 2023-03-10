@@ -1,5 +1,6 @@
 ﻿using Code.Data;
 using Code.Enemy;
+using Code.Enemy.SmallAsteroid;
 using Code.Player;
 using Code.Services;
 using UnityEngine;
@@ -27,7 +28,7 @@ namespace Code.Infrastructure.Installers
             BindBulletPool();
             BindHUD();
             BindPlayer();
-            BindAsteroids();
+            BindEnemy();
         }
         
         private void BindInputController() => 
@@ -44,10 +45,20 @@ namespace Code.Infrastructure.Installers
             Container.Bind<PlayerMove>().FromInstance(player);
         }
 
-        private void BindAsteroids()
+        private void BindEnemy()
         {
             Container.BindInterfacesTo<EnemySpawner>().AsSingle().WithArguments(_config).NonLazy();
-           Container.BindFactory<EnemyMovement, EnemyMovement.Factory>().FromComponentInNewPrefab(_prefabs.asteroid).NonLazy();
+            Container.BindMemoryPool<BigAsteroid, BigAsteroid.Pool>()
+                .WithInitialSize(_settings.bigAsteroidsPoolSize)
+                .ExpandByOneAtATime()
+                .FromComponentInNewPrefab(_prefabs.bigAsteroid)
+                .UnderTransformGroup("Big Asteroids");
+            
+            Container.BindMemoryPool<SmallAsteroid, SmallAsteroid.Pool>()
+                .WithInitialSize(_settings.smallAsteroidsPoolSize)
+                .ExpandByOneAtATime()
+                .FromComponentInNewPrefab(_prefabs.smallAsteroid)
+                .UnderTransformGroup("Small Asteroids");
         }
 
         private void BindBulletPool() =>

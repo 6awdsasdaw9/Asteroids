@@ -1,35 +1,33 @@
 ﻿using System;
 using Code.Data;
+using Code.Stats;
 using UnityEngine;
 using Zenject;
 
-namespace Code.Stats
+namespace Code.Player
 {
     public class PlayerHealth : MonoBehaviour, IHealth
     {
-        private byte _currentHp;
-        private byte _maxHp;
-
-        public byte Current => _currentHp;
-        public byte Max => _maxHp;
-        
+        private byte _currentHP;
+        private byte _maxHP;
         public event Action OnStatChanged;
+        public byte Current => _currentHP;
+        public byte Max => _maxHP;
 
         [Inject]
         private void Construct(GameConfig config)
         {
-            _maxHp = config.playerMaxHP;
-            _currentHp = _maxHp;
+            _maxHP = config.playerMaxHP;
+            _currentHP = _maxHP;
         }
-        
+
         public void TakeDamage()
         {
-            if (_currentHp <= 0)
+            if (Current <= 0)
                 return;
-            
-            _currentHp--;
+            _currentHP--;
             OnStatChanged?.Invoke();
+
         }
-        
     }
 }

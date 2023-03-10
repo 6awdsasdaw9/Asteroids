@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Code
 {
-    public class Bullet : MonoBehaviour , IDetectable
+    public class Bullet : MonoBehaviour , IDetectable , IDespawer
     {
         [SerializeField] private Rigidbody2D _rb;
         private float _speed;
@@ -19,25 +19,18 @@ namespace Code
             _pool = pool;
             _speed = config.playerBulletSpeed;
         }
-
-        private void OnCollisionEnter2D(Collision2D col)
-        {
-            if (TryGetComponent(out IHealth hp))
-            {
-                hp.TakeDamage();
-            }
-        }
-
+        
         private void SpawnBullet(Vector3 position,Vector2 forward)
         {
             transform.position = position;
             _rb.velocity = forward * _speed;
         }
-        
-        public void OnTriggerEnter()
-        {
+
+        public void OnDetect() =>
+            Despawn();
+
+        public void Despawn() => 
             _pool.Despawn(this);
-        }
 
         public class Pool : MonoMemoryPool<Vector3,Vector2,Bullet>
         {

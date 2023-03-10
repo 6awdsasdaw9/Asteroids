@@ -2,6 +2,6 @@ namespace Code.Services
 {
     public interface IDetectable
     {
-        void OnTriggerEnter();
+        void OnDetect();
     }
 }

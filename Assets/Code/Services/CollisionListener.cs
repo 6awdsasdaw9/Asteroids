@@ -7,10 +7,8 @@ namespace Code.Services
     {
         private void OnTriggerEnter2D(Collider2D col)
         {
-
-            Debug.Log(col.name);
             if (col.TryGetComponent(out IDetectable obj)) 
-                obj.OnTriggerEnter();
+                obj.OnDetect();
         }
     }
 }

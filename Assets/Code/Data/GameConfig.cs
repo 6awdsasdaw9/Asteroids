@@ -20,9 +20,15 @@ namespace Code.Data
         [Range(1, 10)] public float playerBulletSpeed = 9;
         
         
-        [Header("Enemy")]
-        [Range(0.5f, 5)] public float enemySpeed = 2;
-        [Range(2, 5)] public float enemySpawnCooldown = 5;
-
+        [Header("Big Asteroid")]
+        [Range(2, 5)] public float asteroidsSpawnCooldown = 5;
+        [Range(0.5f, 5)] public float bigAsteroidSpeed = 2;
+        [Range(1, 3)]public byte bigAsteroidMaxHP = 1;
+        [Range(1, 3)]public byte createSmallAsteroid = 3;
+        
+        
+        [Header("Small Asteroid")]
+        [Range(0.5f, 5)] public float smallAsteroidSpeed =1.5f;
+        [Range(1, 3)]public byte smallAsteroidMaxHP = 1;
     }
 }
