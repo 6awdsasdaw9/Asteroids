@@ -1,8 +1,10 @@
 ﻿using Code.Data;
 using Code.Enemy;
-using Code.Enemy.SmallAsteroid;
+using Code.Enemy.BigAsteroids;
+using Code.Enemy.SmallAsteroids;
 using Code.Player;
 using Code.Services;
+using Code.UI;
 using UnityEngine;
 using Zenject;
 
@@ -47,7 +49,7 @@ namespace Code.Infrastructure.Installers
 
         private void BindEnemy()
         {
-            Container.BindInterfacesTo<EnemySpawner>().AsSingle().WithArguments(_config).NonLazy();
+            Container.BindInterfacesTo<EnemiesFabric>().AsSingle().WithArguments(_config).NonLazy();
             Container.BindMemoryPool<BigAsteroid, BigAsteroid.Pool>()
                 .WithInitialSize(_settings.bigAsteroidsPoolSize)
                 .ExpandByOneAtATime()

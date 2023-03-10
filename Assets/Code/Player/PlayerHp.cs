@@ -6,13 +6,14 @@ using Zenject;
 
 namespace Code.Player
 {
-    public class PlayerHealth : MonoBehaviour, IHealth
+    public class PlayerHp : MonoBehaviour, IPlayerHealth
     {
         private byte _currentHP;
         private byte _maxHP;
-        public event Action OnStatChanged;
         public byte Current => _currentHP;
         public byte Max => _maxHP;
+        
+        public event Action OnStatChanged;
 
         [Inject]
         private void Construct(GameConfig config)
@@ -27,7 +28,6 @@ namespace Code.Player
                 return;
             _currentHP--;
             OnStatChanged?.Invoke();
-
         }
     }
 }

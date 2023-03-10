@@ -1,6 +1,7 @@
 using System;
 using Code.Data;
 using Code.Services;
+using Code.Stats;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -8,11 +9,11 @@ using Zenject;
 
 namespace Code.Player
 {
-    [RequireComponent(typeof(Fuel), typeof(Rigidbody2D))]
+    [RequireComponent(typeof(PlayerFuel), typeof(Rigidbody2D))]
     public class PlayerMove : MonoBehaviour
     {
         [SerializeField] private Rigidbody2D _rb;
-        [SerializeField] private Fuel _fuel;
+        [SerializeField] private PlayerFuel playerFuel;
 
         private float _speed;
         private float _maxSpeed;
@@ -50,14 +51,12 @@ namespace Code.Player
 
         private void Move()
         {
-            if (!_fuel.IsEnoughFuel)
+            if (!playerFuel.IsEnoughFuel)
                 return;
 
-            _fuel.Reduce();
+            playerFuel.Reduce();
             _rb.AddForce(transform.up * _speed);
             _rb.velocity = Vector2.ClampMagnitude(_rb.velocity, _maxSpeed);
         }
-
-
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Code.Player;
+using Code.Stats;
 using UnityEngine;
 using Zenject;
 
@@ -6,12 +7,14 @@ namespace Code.UI
 {
     public class HpBarActor : MonoBehaviour
     {
-        [SerializeField] private PlayerHealth _health;
+        private IPlayerHealth _health;
         private HpBar _hpBar;
     
+        
         [Inject]
-        private void Construct(UIDisplay hud)
+        private void Construct( UIDisplay hud)
         {
+            _health = GetComponent<IPlayerHealth>();
             _hpBar = hud.hpBar;
             _health.OnStatChanged += UpdateHealthBar;
         }

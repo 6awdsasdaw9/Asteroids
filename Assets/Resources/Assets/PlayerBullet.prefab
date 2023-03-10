@@ -148,6 +148,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 6344321589053776990}
+  damage: 1
 --- !u!114 &6636704609856869172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -160,3 +161,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e674e31f89cfc45832e7fc312d8bca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isDestroyingAfterAttack: 1

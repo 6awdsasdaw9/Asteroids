@@ -1,23 +1,26 @@
 ﻿using Code.Data;
-using Code.Enemy.SmallAsteroid;
+using Code.Enemy.BigAsteroids;
+using Code.Enemy.SmallAsteroids;
 using UnityEngine;
 using Zenject;
 
 namespace Code.Enemy
 {
-    public class EnemySpawner : ITickable
+    public class EnemiesFabric : ITickable
     {
         private readonly BigAsteroid.Pool _bigAsteroidPool;
-        private readonly SmallAsteroid.SmallAsteroid.Pool _smallAsteroidPool;
+        private readonly SmallAsteroid.Pool _smallAsteroidPool;
+        
         private readonly float _asteroidsSpawnCooldown;
-        private readonly byte _createSmallAsteroid;
         private float _currentCooldown;
+        
+        private readonly byte _createSmallAsteroid;
 
 
-        private EnemySpawner(
+        private EnemiesFabric(
             BigAsteroid.Pool bigAsteroidPool,
-            SmallAsteroid.SmallAsteroid.Pool smallAsteroidPool,
-            GameConfig config)
+            SmallAsteroid.Pool smallAsteroidPool,
+            GameConfig config) 
         {
             _smallAsteroidPool = smallAsteroidPool;
             _bigAsteroidPool = bigAsteroidPool;
@@ -40,7 +43,7 @@ namespace Code.Enemy
         private void CreateBigAsteroid()
         {
             var enemy = _bigAsteroidPool.Spawn();
-            enemy.health.OnDeath += CreateSmallAsteroids;
+            enemy.hp.SetActionOnDeath(CreateSmallAsteroids);
         }
 
         private void CreateSmallAsteroids(Transform bigAsteroid)

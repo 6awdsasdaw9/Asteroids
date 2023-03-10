@@ -1,15 +1,11 @@
 ﻿using Code.Data;
-using Code.Player;
-using UnityEditorInternal;
 using UnityEngine;
 using Zenject;
 
-
-namespace Code.Enemy.SmallAsteroid
+namespace Code.Enemy.SmallAsteroids
 {
     public class SmallAsteroid : MonoBehaviour,IEnemy, IDespawer
     {
-
         [SerializeField] private Rigidbody2D _rb;
         private float _speed;
         private Pool _pool;

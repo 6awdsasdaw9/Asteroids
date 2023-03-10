@@ -3,30 +3,33 @@ using Code.Data;
 using UnityEngine;
 using Zenject;
 
-public class HpBar : MonoBehaviour
+namespace Code.UI
 {
-    private readonly List<GameObject> _hpIcons = new();
+    public class HpBar : MonoBehaviour
+    {
+        private readonly List<GameObject> _hpIcons = new();
     
-    [Inject]
-    private void Construct(GamePrefabs prefabs, GameConfig config)
-    {
-        AddHpIcon(config.playerMaxHP, prefabs.hpIcon);
-    }
-
-    public void SetValue(byte currentHP,byte maxHP)
-    {
-        for (byte i = 0; i < maxHP; i++)
+        [Inject]
+        private void Construct(GamePrefabs prefabs, GameConfig config)
         {
-            _hpIcons[i].SetActive(i < currentHP);
+            AddHpIcon(config.playerMaxHP, prefabs.hpIcon);
         }
-    }
-    private void AddHpIcon(byte maxHp, GameObject hpIcon)
-    {
-        for (byte i = 0; i < maxHp; i++)
+
+        public void SetValue(byte currentHP,byte maxHP)
         {
-            GameObject hp = Instantiate(hpIcon);
-            hp.transform.SetParent(transform, false);
-            _hpIcons.Add(hp);
+            for (byte i = 0; i < maxHP; i++)
+            {
+                _hpIcons[i].SetActive(i < currentHP);
+            }
+        }
+        private void AddHpIcon(byte maxHp, GameObject hpIcon)
+        {
+            for (byte i = 0; i < maxHp; i++)
+            {
+                GameObject hp = Instantiate(hpIcon);
+                hp.transform.SetParent(transform, false);
+                _hpIcons.Add(hp);
+            }
         }
     }
 }

@@ -1,19 +1,19 @@
 ﻿using Code.Data;
 using Code.Player;
+using Code.Stats;
 using UnityEngine;
 using Zenject;
 
-namespace Code.Enemy
+namespace Code.Enemy.BigAsteroids
 {
-    [RequireComponent(typeof(Rigidbody2D), typeof(BigAsteroidHealth))]
+    [RequireComponent(typeof(Rigidbody2D), typeof(BigAsteroidHp))]
     public class BigAsteroid : MonoBehaviour, IEnemy, IDespawer
     {
-        public BigAsteroidHealth health;
         [SerializeField] private Rigidbody2D _rb;
         private Transform _player;
         private float _speed;
-
         private Pool _pool;
+        public BigAsteroidHp hp { get; private set; }
 
         [Inject]
         public void Construct(Pool pool, PlayerMove player, GameConfig config)
@@ -21,6 +21,7 @@ namespace Code.Enemy
             _pool = pool;
             _player = player.transform;
             _speed = config.bigAsteroidSpeed;
+            hp = GetComponent<BigAsteroidHp>();
         }
         
         public void Despawn() => 
@@ -38,7 +39,6 @@ namespace Code.Enemy
 
         private Vector3 GetRandomPoint()
         {
-            Vector3 position;
             float fieldWidth = Screen.width;
             float fieldHeight = Screen.height;
             var side = Random.Range(0, 4);
@@ -46,7 +46,7 @@ namespace Code.Enemy
             var x = (side == 1) ? fieldWidth : ((side == 3) ? 0 : Random.Range(0, fieldWidth));
             var y = (side == 0) ? fieldHeight : ((side == 2) ? 0 : Random.Range(0, fieldHeight));
 
-            position = Camera.main.ScreenToWorldPoint(new Vector3(x, y, 0));
+            Vector3 position = Camera.main.ScreenToWorldPoint(new Vector3(x, y, 0));
             position.z = 0;
             return position;
         }
@@ -55,7 +55,7 @@ namespace Code.Enemy
         {
             protected override void Reinitialize(BigAsteroid asteroid)
             {
-                asteroid.health.ResetHealth();
+                asteroid.hp.ResetHealth();
                 asteroid.SetPosition(asteroid.GetRandomPoint());
                 asteroid.Move();
             }

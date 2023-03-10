@@ -1,6 +1,7 @@
-﻿using Code.Enemy;
-using Code.Enemy.SmallAsteroid;
+﻿using Code.Enemy.BigAsteroids;
+using Code.Enemy.SmallAsteroids;
 using Code.Player;
+using Code.UI;
 using UnityEngine;
 
 namespace Code.Data

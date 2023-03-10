@@ -1,7 +1,5 @@
-﻿using System;
-using Code.Data;
+﻿using Code.Data;
 using Code.Services;
-using Code.Stats;
 using UnityEngine;
 using Zenject;
 
@@ -10,6 +8,7 @@ namespace Code
     public class Bullet : MonoBehaviour , IDetectable , IDespawer
     {
         [SerializeField] private Rigidbody2D _rb;
+        [SerializeField] private byte damage = 1;
         private float _speed;
         private Pool _pool;
 

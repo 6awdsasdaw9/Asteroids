@@ -167,7 +167,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 1109516808530731943}
-  _fuel: {fileID: 8698772158765010741}
+  playerFuel: {fileID: 8698772158765010741}
 --- !u!114 &2104442704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -204,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42ea5fd2c11f83c44a549de366c089e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _fuel: {fileID: 8698772158765010741}
+  playerFuel: {fileID: 8698772158765010741}
 --- !u!114 &8827842147811413648
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -229,4 +229,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e50f999a87544e8a9f3653dc0abf7112, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _health: {fileID: 8827842147811413648}

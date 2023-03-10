@@ -1,27 +1,30 @@
-using Code.UI;
+using Code.Stats;
 using UnityEngine;
 using Zenject;
 
-[RequireComponent(typeof(Fuel))]
-public class FuelBarActor : MonoBehaviour
+namespace Code.UI
 {
-    [SerializeField] private Fuel _fuel;
-    private FuelBar _fuelFuelBar;
-    
-    [Inject]
-    private void Construct(UIDisplay hud)
+    [RequireComponent(typeof(PlayerFuel))]
+    public class FuelBarActor : MonoBehaviour
     {
-        _fuelFuelBar = hud.fuelBar;
-        _fuel.OnStatChanged += UpdateFuelBar;
-    }
+        [SerializeField] private PlayerFuel playerFuel;
+        private FuelBar _fuelFuelBar;
     
-    private void OnDestroy()
-    {
-        _fuel.OnStatChanged -= UpdateFuelBar;
-    }
+        [Inject]
+        private void Construct(UIDisplay hud)
+        {
+            _fuelFuelBar = hud.fuelBar;
+            playerFuel.OnStatChanged += UpdatePlayerFuelBar;
+        }
+    
+        private void OnDestroy()
+        {
+            playerFuel.OnStatChanged -= UpdatePlayerFuelBar;
+        }
 
-    private void UpdateFuelBar()
-    {
-        _fuelFuelBar.SetValue(_fuel.Current, _fuel.Max);
+        private void UpdatePlayerFuelBar()
+        {
+            _fuelFuelBar.SetValue(playerFuel.Current, playerFuel.Max);
+        }
     }
 }

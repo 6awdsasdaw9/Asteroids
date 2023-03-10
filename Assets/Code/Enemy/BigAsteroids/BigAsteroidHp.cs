@@ -4,19 +4,17 @@ using Code.Stats;
 using UnityEngine;
 using Zenject;
 
-namespace Code.Enemy
+namespace Code.Enemy.BigAsteroids
 {
-    public class BigAsteroidHealth : MonoBehaviour, IHealth
+    public class BigAsteroidHp : MonoBehaviour, ITakingDamage
     {
         private IDespawer _despawer;
+        
         private byte _currentHP;
         private byte _maxHP;
-
-        public byte Current => _currentHP;
-        public byte Max => _maxHP;
-
-        public event Action OnStatChanged;
-        public Action<Transform> OnDeath;
+        
+        private Action<Transform> OnDeath;
+        
 
         [Inject]
         private void Construct(GameConfig config)
@@ -33,13 +31,14 @@ namespace Code.Enemy
         public void TakeDamage()
         {
             _currentHP--;
-            Debug.Log(_currentHP);
             if (_currentHP <= 0)
             {
                 OnDeath?.Invoke(transform);
-                OnDeath = null;
                 _despawer.Despawn();
             }
         }
+
+        public void SetActionOnDeath(Action<Transform> action) => 
+            OnDeath = action;
     }
 }
