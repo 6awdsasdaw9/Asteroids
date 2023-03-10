@@ -5,10 +5,13 @@ namespace Code.Data
     [CreateAssetMenu(fileName = "GameSettings", menuName = "ScriptableObjects/Data/GameSettings")]
     public class GameSettings : ScriptableObject
     {
-        public int playerBulletPoolSize = 20;
-        public int enemyBulletPoolSize = 10;
-
-        public int bigAsteroidsPoolSize = 15;
+        [Header("Bullets pool size")]
+        public int playerBulletPoolSize = 5;
+        public int playerSuperBulletPoolSize = 3;
+        public int aliensBulletPoolSize = 3;
+        
+        [Header("Enemies pool size")]
+        public int bigAsteroidsPoolSize = 10;
         public int smallAsteroidsPoolSize = 20;
     }
 }

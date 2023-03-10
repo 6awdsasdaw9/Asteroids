@@ -16,8 +16,10 @@ namespace Code.Data
         public float fuelForMove = 0.2f;
         public float fuelFromEnemy;
         
-        [Header("Bullet")]
+        [Header("Bullets")]
         [Range(1, 10)] public float playerBulletSpeed = 9;
+        [Range(1, 10)] public float playerSuperBulletSpeed = 9;
+        [Range(1, 10)] public float aliensBulletSpeed = 9;
         
         
         [Header("Big Asteroid")]
@@ -30,5 +32,10 @@ namespace Code.Data
         [Header("Small Asteroid")]
         [Range(0.5f, 5)] public float smallAsteroidSpeed =1.5f;
         [Range(1, 3)]public byte smallAsteroidMaxHP = 1;
+
+        [Header("Attack")]
+        public byte minDamage = 1;
+        public byte midDamage = 2;
+        public byte maxDamage = 3;
     }
 }

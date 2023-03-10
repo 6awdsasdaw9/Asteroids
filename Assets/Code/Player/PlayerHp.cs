@@ -22,7 +22,7 @@ namespace Code.Player
             _currentHP = _maxHP;
         }
 
-        public void TakeDamage()
+        public void TakeDamage(byte damage)
         {
             if (Current <= 0)
                 return;

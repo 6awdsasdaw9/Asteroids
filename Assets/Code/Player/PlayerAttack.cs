@@ -1,4 +1,5 @@
-﻿using Code.Services;
+﻿using Code.Enemy;
+using Code.Services;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -9,13 +10,13 @@ namespace Code.Player
     public class PlayerAttack : MonoBehaviour
     {
         private InputController _inputController;
-        private Bullet.Pool _bulletPool;
+        private BulletsFabric _bulletsFactory;
 
-        [Inject]
-        private void Construct(InputController inputController, Bullet.Pool bulletPool)
+       [Inject]
+        private void Construct(InputController inputController, BulletsFabric bulletsFactory)
         {
             _inputController = inputController;
-            _bulletPool = bulletPool;
+            _bulletsFactory = bulletsFactory;
         }
 
         private void Awake()
@@ -27,6 +28,6 @@ namespace Code.Player
         }
         
         private void Fire() => 
-            _bulletPool.Spawn(transform.position, transform.up);
+            _bulletsFactory.SpawnPlayerBullet(transform.position, transform.up);
     }
 }

@@ -4,7 +4,7 @@ namespace Code.Stats
 {
     public interface ITakingDamage
     {
-        void  TakeDamage();
+        void TakeDamage(byte damage);
     }
 
     public interface IPlayerHealth : ITakingDamage

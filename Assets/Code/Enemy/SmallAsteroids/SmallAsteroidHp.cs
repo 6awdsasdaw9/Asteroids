@@ -12,7 +12,7 @@ namespace Code.Enemy.SmallAsteroids
             _despawer = GetComponent<IDespawer>();
         }
 
-        public void TakeDamage()
+        public void TakeDamage(byte damage)
         {
             _despawer.Despawn();
         }

@@ -9,12 +9,15 @@ namespace Code.Data
     [CreateAssetMenu(fileName = "GamePrefabs", menuName = "ScriptableObjects/Data/GamePrefabs")]
     public class GamePrefabs : ScriptableObject
     {
-        public PlayerMove player;
-        public Bullet playerBullet;
         public UIDisplay hud;
         public GameObject hpIcon;
+        
+        public PlayerMove player;
+        public Bullet playerBullet;
+        public Bullet playerSuperBullet;
 
         public BigAsteroid bigAsteroid;
         public SmallAsteroid smallAsteroid;
+        public Object aliensBullet;
     }
 }

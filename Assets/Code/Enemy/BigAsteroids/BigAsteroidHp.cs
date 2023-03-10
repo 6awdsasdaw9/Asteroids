@@ -9,12 +9,12 @@ namespace Code.Enemy.BigAsteroids
     public class BigAsteroidHp : MonoBehaviour, ITakingDamage
     {
         private IDespawer _despawer;
-        
+
         private byte _currentHP;
         private byte _maxHP;
-        
+
         private Action<Transform> OnDeath;
-        
+
 
         [Inject]
         private void Construct(GameConfig config)
@@ -28,9 +28,9 @@ namespace Code.Enemy.BigAsteroids
             _currentHP = _maxHP;
         }
 
-        public void TakeDamage()
+        public void TakeDamage(byte damage)
         {
-            _currentHP--;
+            _currentHP -= damage;
             if (_currentHP <= 0)
             {
                 OnDeath?.Invoke(transform);
@@ -38,7 +38,7 @@ namespace Code.Enemy.BigAsteroids
             }
         }
 
-        public void SetActionOnDeath(Action<Transform> action) => 
+        public void SetActionOnDeath(Action<Transform> action) =>
             OnDeath = action;
     }
 }

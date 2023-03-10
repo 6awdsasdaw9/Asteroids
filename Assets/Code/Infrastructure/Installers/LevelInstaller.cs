@@ -27,10 +27,10 @@ namespace Code.Infrastructure.Installers
         public override void InstallBindings()
         {
             BindInputController();
-            BindBulletPool();
+            BindBulletPools();
             BindHUD();
             BindPlayer();
-            BindEnemy();
+            BindEnemiesPool();
         }
         
         private void BindInputController() => 
@@ -47,9 +47,8 @@ namespace Code.Infrastructure.Installers
             Container.Bind<PlayerMove>().FromInstance(player);
         }
 
-        private void BindEnemy()
+        private void BindEnemiesPool()
         {
-            Container.BindInterfacesTo<EnemiesFabric>().AsSingle().WithArguments(_config).NonLazy();
             Container.BindMemoryPool<BigAsteroid, BigAsteroid.Pool>()
                 .WithInitialSize(_settings.bigAsteroidsPoolSize)
                 .ExpandByOneAtATime()
@@ -61,13 +60,38 @@ namespace Code.Infrastructure.Installers
                 .ExpandByOneAtATime()
                 .FromComponentInNewPrefab(_prefabs.smallAsteroid)
                 .UnderTransformGroup("Small Asteroids");
+           
+            Container.BindInterfacesTo<EnemiesFabric>().AsSingle().WithArguments(_config).NonLazy();
         }
 
-        private void BindBulletPool() =>
+        private void BindBulletPools()
+        {
             Container.BindMemoryPool<Bullet, Bullet.Pool>()
+                .WithId(Constants.PlayerBullet)
                 .WithInitialSize(_settings.playerBulletPoolSize)
                 .ExpandByOneAtATime()
                 .FromComponentInNewPrefab(_prefabs.playerBullet)
-                .UnderTransformGroup("Player Bullets");
+                .UnderTransformGroup(Constants.PlayerBullet)
+                .NonLazy();
+            
+            Container.BindMemoryPool<Bullet, Bullet.Pool>()
+                .WithId(Constants.PlayerSuperBullet)
+                .WithInitialSize(_settings.playerSuperBulletPoolSize)
+                .ExpandByOneAtATime()
+                .FromComponentInNewPrefab(_prefabs.playerSuperBullet)
+                .UnderTransformGroup(Constants.PlayerSuperBullet)
+                .NonLazy();
+            
+            Container.BindMemoryPool<Bullet, Bullet.Pool>()
+                .WithId(Constants.AliensBullet)
+                .WithInitialSize(_settings.aliensBulletPoolSize)
+                .ExpandByOneAtATime()
+                .FromComponentInNewPrefab(_prefabs.aliensBullet)
+                .UnderTransformGroup(Constants.AliensBullet)
+                .NonLazy();
+            
+            Container.Bind<BulletsFabric>().AsSingle().NonLazy();
+           
+        }
     }
 }
