@@ -1,4 +1,5 @@
-﻿using Code.Data;
+﻿using System;
+using Code.Data;
 using Code.Enemy;
 using Code.Services;
 using UniRx;
@@ -14,7 +15,9 @@ namespace Code.Player
         private BulletsFactory _bulletsFactory;
 
         private float _cooldown, _currentCooldown;
-        private float _superCoolDown, _currentSuperCooldown; 
+        private float _superCooldown, _currentSuperCooldown;
+        
+        public Action<float, float> SuperCooldownChanged;
 
         [Inject]
         private void Construct(InputController inputController, BulletsFactory bulletsFactory, GameConfig config)
@@ -23,7 +26,7 @@ namespace Code.Player
             _bulletsFactory = bulletsFactory;
             
             _cooldown = config.playerBulletCooldown;
-            _superCoolDown = config.playerSuperBulletCooldown;
+            _superCooldown = config.playerSuperBulletCooldown;
         }
 
         private void Awake()
@@ -40,12 +43,12 @@ namespace Code.Player
             
             this.UpdateAsObservable()
                 .Where(_ => !CooldownIsUp(_currentCooldown))
-                .Subscribe(_ => UpdateCooldown(ref _currentCooldown))
+                .Subscribe(_ => UpdateCooldown())
                 .AddTo(this);    
             
             this.UpdateAsObservable()
                 .Where(_ => !CooldownIsUp(_currentSuperCooldown))
-                .Subscribe(_ => UpdateCooldown(ref _currentSuperCooldown))
+                .Subscribe(_ => UpdateSuperCooldown())
                 .AddTo(this);
             
         }
@@ -61,12 +64,17 @@ namespace Code.Player
         private void SuperAttack()
         {
             _bulletsFactory.SpawnPlayerSuperBullet(transform.position, transform.up);
-            _currentSuperCooldown = _superCoolDown;
+            _currentSuperCooldown = _superCooldown;
         }
 
-        private void UpdateCooldown(ref float time) =>
-            time -= Time.deltaTime;
+        private void UpdateCooldown() =>
+            _currentCooldown -= Time.deltaTime;
 
+        private void UpdateSuperCooldown()
+        {
+            _currentSuperCooldown -= Time.deltaTime;
+            SuperCooldownChanged?.Invoke(_currentSuperCooldown,_superCooldown);
+        }
         private bool CooldownIsUp(float time) =>
             time <= 0;
     }

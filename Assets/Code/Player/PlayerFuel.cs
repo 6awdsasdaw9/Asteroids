@@ -10,9 +10,8 @@ namespace Code.Stats
         private float _current;
         private float _max;
         private float _fuelForMove;
-        private float _fuelFromEnemy;
-    
-        public event Action OnStatChanged;
+
+        public  Action OnStatChanged;
     
         public float Current => _current;
         public float Max => _max;
@@ -24,7 +23,6 @@ namespace Code.Stats
         {
             _max = config.maxFuel;
             _fuelForMove = config.fuelForMove;
-            _fuelFromEnemy = config.fuelFromEnemy;
             _current = _max;
         }
     

@@ -1,29 +1,20 @@
 ﻿using Code.Player;
 using Code.Stats;
-using UnityEngine;
-using Zenject;
 
 namespace Code.UI
 {
-    public class HpBarActor : MonoBehaviour
+    public class PlayerHpBarActor 
     {
         private IPlayerHealth _health;
         private HpBar _hpBar;
-    
-        
-        [Inject]
-        private void Construct( UIDisplay hud)
+
+        private PlayerHpBarActor(UIDisplay hud, PlayerMove player)
         {
-            _health = GetComponent<IPlayerHealth>();
+            _health = player.GetComponent<IPlayerHealth>();
             _hpBar = hud.hpBar;
             _health.OnStatChanged += UpdateHealthBar;
         }
-    
-        private void OnDestroy()
-        {
-            _health.OnStatChanged -= UpdateHealthBar;
-        }
-
+        
         private void UpdateHealthBar()
         {
             _hpBar.SetValue(_health.Current, _health.Max);

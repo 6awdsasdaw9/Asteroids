@@ -34,6 +34,7 @@ namespace Code.Enemy.Aliens
             if (_currentHP <= 0)
             {
                 _deSpawner.DeSpawn();
+                OnDeath?.Invoke(transform);
             }
         }
 

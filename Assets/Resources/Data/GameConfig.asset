@@ -27,6 +27,7 @@ MonoBehaviour:
   bigAsteroidMaxHP: 2
   createSmallAsteroid: 3
   smallAsteroidSpeed: 2.04
+  aliensSpawnCooldown: 15
   aliensMaxHP: 4
   aliensSpeed: 1
   DamageConfig:

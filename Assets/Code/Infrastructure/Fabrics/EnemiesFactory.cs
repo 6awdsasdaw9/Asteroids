@@ -1,9 +1,9 @@
-﻿using System;
-using Code.Data;
+﻿using Code.Data;
 using Code.Enemy.Aliens;
 using Code.Enemy.BigAsteroids;
 using Code.Enemy.SmallAsteroids;
-using UniRx;
+using Code.Player;
+using Code.Stats;
 using UnityEngine;
 using Zenject;
 
@@ -11,37 +11,41 @@ namespace Code.Enemy
 {
     public class EnemiesFactory : ITickable
     {
-        private BigAsteroid.Pool _bigAsteroidPool;
-        private SmallAsteroid.Pool _smallAsteroidPool;
-        private Alien.Pool _alienPool;
+        private readonly BigAsteroid.Pool _bigAsteroidPool;
+        private readonly SmallAsteroid.Pool _smallAsteroidPool;
+        private readonly Alien.Pool _aliensPool;
         
-        private float _asteroidsSpawnCooldown;
+        private readonly float _asteroidsSpawnCooldown;
         private float _currentAsteroidsCooldown;
+        private readonly int _createSmallAsteroid;
         
         private float _aliensSpawnCooldown;
         private float _currentAliensCooldown;
-        
-        private readonly int _createSmallAsteroid;
 
-        private IObservable<Unit> _updateObservable;
+        private readonly PlayerFuel _fuel;
+        private readonly float _fuelFromAliens;
+
         public float CurrentAliensCooldown => _currentAliensCooldown;
         
         private EnemiesFactory(BigAsteroid.Pool bigAsteroidPool,
             SmallAsteroid.Pool smallAsteroidPool,
-            Alien.Pool alienPool,
-            GameConfig config) 
+            Alien.Pool aliensPool,
+            GameConfig config,
+            PlayerMove player) 
         {
             _bigAsteroidPool = bigAsteroidPool;
             _smallAsteroidPool = smallAsteroidPool;
-            _alienPool = alienPool;
+            _aliensPool = aliensPool;
             
             _asteroidsSpawnCooldown = config.asteroidsSpawnCooldown;
             _currentAsteroidsCooldown = _asteroidsSpawnCooldown;
+            _createSmallAsteroid = config.createSmallAsteroid;
 
             _aliensSpawnCooldown = config.aliensSpawnCooldown;
             _currentAliensCooldown = _aliensSpawnCooldown;
-            
-            _createSmallAsteroid = config.createSmallAsteroid;
+
+            _fuel = player.GetComponent<PlayerFuel>();
+            _fuelFromAliens = config.fuelFromEnemy;
         }
 
         public void Tick()
@@ -97,12 +101,13 @@ namespace Code.Enemy
 
         private void SpawnAliens()
         {
-            _alienPool.Spawn();
+            _aliensPool.Spawn();
         }
 
         public void DeSpawnAlien(Alien alien)
         {
-            _alienPool.Despawn(alien);
+            _aliensPool.Despawn(alien);
+            _fuel.Replenish(_fuelFromAliens);
         }
     }
 }
