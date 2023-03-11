@@ -10,7 +10,7 @@ namespace Code
     {
         [SerializeField] private DamageOwnerType _owner;
         [SerializeField] private bool isDestroyingAfterAttack;
-        
+
         private IDeSpawner _deSpawner;
         private int _damage;
 
@@ -18,22 +18,18 @@ namespace Code
         private void Construct(GameConfig config)
         {
             var localConfig = config.DamageConfig.FirstOrDefault(d => d.DamageOwner == _owner);
-            if (localConfig != null) _damage = localConfig.Damage;
+            if (localConfig != null)
+                _damage = localConfig.Damage;
 
             TryGetComponent(out _deSpawner);
         }
 
-
-        private void OnCollisionEnter2D(Collision2D col)
+        protected void Attack(ITakingDamage health)
         {
-            if (col.gameObject.TryGetComponent(out ITakingDamage health))
-            {
-                health.TakeDamage(_damage,_owner);
-                
-                if (_deSpawner != null && isDestroyingAfterAttack)
-                    _deSpawner.DeSpawn();
-            }
+            health.TakeDamage(_damage, _owner);
+
+            if (_deSpawner != null && isDestroyingAfterAttack)
+                _deSpawner.DeSpawn();
         }
- 
     }
 }

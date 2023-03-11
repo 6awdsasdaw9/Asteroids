@@ -37,9 +37,6 @@ namespace Code.Enemy.BigAsteroids
             _rb.AddForce(transform.up * _speed, ForceMode2D.Impulse);
         }
 
-     
-
-
         private Vector3 GetRandomPoint()
         {
             float fieldWidth = Screen.width;

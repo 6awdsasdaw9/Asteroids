@@ -1,4 +1,5 @@
 ﻿using Code.Data;
+using Code.Enemy.Aliens;
 using Code.Enemy.BigAsteroids;
 using Code.Enemy.SmallAsteroids;
 using UnityEngine;
@@ -10,6 +11,7 @@ namespace Code.Enemy
     {
         private readonly BigAsteroid.Pool _bigAsteroidPool;
         private readonly SmallAsteroid.Pool _smallAsteroidPool;
+        private readonly Alien.Pool _alienPool;
         
         private readonly float _asteroidsSpawnCooldown;
         private float _currentCooldown;
@@ -17,13 +19,15 @@ namespace Code.Enemy
         private readonly int _createSmallAsteroid;
 
 
-        private EnemiesFabric(
-            BigAsteroid.Pool bigAsteroidPool,
+        private EnemiesFabric(BigAsteroid.Pool bigAsteroidPool,
             SmallAsteroid.Pool smallAsteroidPool,
+            Alien.Pool alienPool,
             GameConfig config) 
         {
-            _smallAsteroidPool = smallAsteroidPool;
             _bigAsteroidPool = bigAsteroidPool;
+            _smallAsteroidPool = smallAsteroidPool;
+            _alienPool = alienPool;
+            
             _asteroidsSpawnCooldown = config.asteroidsSpawnCooldown;
             _createSmallAsteroid = config.createSmallAsteroid;
             _currentCooldown = _asteroidsSpawnCooldown;
@@ -33,20 +37,27 @@ namespace Code.Enemy
         {
             if (CooldownIsUp())
             {
-                CreateBigAsteroid();
+                SpawnBigAsteroid();
+                SpawnAliens();
                 _currentCooldown = _asteroidsSpawnCooldown;
             }
             else
                 UpdateCooldown();
         }
+        
+        private void UpdateCooldown() =>
+            _currentCooldown -= Time.deltaTime;
 
-        private void CreateBigAsteroid()
+        private bool CooldownIsUp() =>
+            _currentCooldown <= 0;
+
+        private void SpawnBigAsteroid()
         {
             var enemy = _bigAsteroidPool.Spawn();
-            enemy.hp.SetActionOnDeath(CreateSmallAsteroids);
+            enemy.hp.SetActionOnDeath(SpawnSmallAsteroids);
         }
 
-        private void CreateSmallAsteroids(Transform bigAsteroid)
+        private void SpawnSmallAsteroids(Transform bigAsteroid)
         {
             for (byte i = 0; i < _createSmallAsteroid; i++)
             {
@@ -54,10 +65,14 @@ namespace Code.Enemy
             }
         }
 
-        private void UpdateCooldown() =>
-            _currentCooldown -= Time.deltaTime;
+        private void SpawnAliens()
+        {
+            _alienPool.Spawn();
+        }
 
-        private bool CooldownIsUp() =>
-            _currentCooldown <= 0;
+        public void DeSpawnAlien(Alien alien)
+        {
+            _alienPool.Despawn(alien);
+        }
     }
 }

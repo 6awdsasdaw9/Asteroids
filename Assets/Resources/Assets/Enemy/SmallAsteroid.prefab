@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 969647836590366669}
   - component: {fileID: 6955067179852813582}
   - component: {fileID: 7328013809316780821}
-  - component: {fileID: 5233585692280642934}
   - component: {fileID: -3800766685450467569}
+  - component: {fileID: -5045168957317720863}
   m_Layer: 8
   m_Name: SmallAsteroid
   m_TagString: Untagged
@@ -162,20 +162,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rb: {fileID: 969647836590366669}
---- !u!114 &5233585692280642934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6336924321153514305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20e674e31f89cfc45832e7fc312d8bca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _owner: 5
-  isDestroyingAfterAttack: 1
 --- !u!114 &-3800766685450467569
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -188,3 +174,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 670f05cfb0a142e9a4219b6f6a90234e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-5045168957317720863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6336924321153514305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5418f6c81b4b40b6b5079453549ac6ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _owner: 3
+  isDestroyingAfterAttack: 1

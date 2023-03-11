@@ -1,5 +1,6 @@
 ﻿using Code.Data;
 using Code.Enemy;
+using Code.Enemy.Aliens;
 using Code.Enemy.BigAsteroids;
 using Code.Enemy.SmallAsteroids;
 using Code.Player;
@@ -60,8 +61,15 @@ namespace Code.Infrastructure.Installers
                 .ExpandByOneAtATime()
                 .FromComponentInNewPrefab(_prefabs.smallAsteroid)
                 .UnderTransformGroup("Small Asteroids");
+            
+            
+            Container.BindMemoryPool<Alien, Alien.Pool>()
+                .WithInitialSize(_settings.aliensPoolSize)
+                .ExpandByOneAtATime()
+                .FromComponentInNewPrefab(_prefabs.alien)
+                .UnderTransformGroup("Aliens");
            
-            Container.BindInterfacesTo<EnemiesFabric>().AsSingle().WithArguments(_config).NonLazy();
+            Container.BindInterfacesAndSelfTo<EnemiesFabric>().AsSingle().WithArguments(_config).NonLazy();
         }
 
         private void BindBulletPools()
