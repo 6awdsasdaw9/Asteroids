@@ -37,9 +37,10 @@ namespace Code.Infrastructure.Installers
 
         private void BindActors()
         {
+            Container.Bind<PlayerHpBarActor>().AsSingle().NonLazy();
             Container.Bind<SuperBulletCooldownActor>().AsSingle().NonLazy();
             Container.Bind<FuelBarActor>().AsSingle().NonLazy();
-            Container.Bind<PlayerHpBarActor>().AsSingle().NonLazy();
+            Container.Bind<FuelReplenishActor>().AsSingle().NonLazy();
             
         }
 

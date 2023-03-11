@@ -1,9 +1,8 @@
-﻿using Code.Data;
+﻿using System;
+using Code.Data;
 using Code.Enemy.Aliens;
 using Code.Enemy.BigAsteroids;
 using Code.Enemy.SmallAsteroids;
-using Code.Player;
-using Code.Stats;
 using UnityEngine;
 using Zenject;
 
@@ -19,19 +18,17 @@ namespace Code.Enemy
         private float _currentAsteroidsCooldown;
         private readonly int _createSmallAsteroid;
         
-        private float _aliensSpawnCooldown;
+        private readonly float _aliensSpawnCooldown;
         private float _currentAliensCooldown;
 
-        private readonly PlayerFuel _fuel;
-        private readonly float _fuelFromAliens;
-
+ 
         public float CurrentAliensCooldown => _currentAliensCooldown;
-        
+        public Action OnDeathAliens;
+
         private EnemiesFactory(BigAsteroid.Pool bigAsteroidPool,
             SmallAsteroid.Pool smallAsteroidPool,
             Alien.Pool aliensPool,
-            GameConfig config,
-            PlayerMove player) 
+            GameConfig config) 
         {
             _bigAsteroidPool = bigAsteroidPool;
             _smallAsteroidPool = smallAsteroidPool;
@@ -43,9 +40,7 @@ namespace Code.Enemy
 
             _aliensSpawnCooldown = config.aliensSpawnCooldown;
             _currentAliensCooldown = _aliensSpawnCooldown;
-
-            _fuel = player.GetComponent<PlayerFuel>();
-            _fuelFromAliens = config.fuelFromEnemy;
+            
         }
 
         public void Tick()
@@ -71,7 +66,6 @@ namespace Code.Enemy
             if (CooldownIsUp(_currentAliensCooldown))
             {
                 SpawnAliens();
-                _aliensSpawnCooldown--;
                 _currentAliensCooldown = _aliensSpawnCooldown;
             }
             else
@@ -107,7 +101,7 @@ namespace Code.Enemy
         public void DeSpawnAlien(Alien alien)
         {
             _aliensPool.Despawn(alien);
-            _fuel.Replenish(_fuelFromAliens);
+            OnDeathAliens?.Invoke();
         }
     }
 }

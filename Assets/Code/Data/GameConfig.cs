@@ -15,7 +15,7 @@ namespace Code.Data
         [Space, Header("Fuel")] 
         public float maxFuel = 10;
         public float fuelForMove = 0.2f;
-        public float fuelFromEnemy;
+        public float fuelFromAliens;
         
         [Space, Header("Bullets")] 
         [Range(1, 10)] public float playerBulletSpeed = 9;
