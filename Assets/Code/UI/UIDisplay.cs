@@ -7,5 +7,6 @@ namespace Code.UI
         public FuelBar fuelBar;
         public HpBar hpBar;
         public SuperBulletCooldownBar superBulletCooldownBar;
+        public AliensTimer aliensTimer;
     }
 }

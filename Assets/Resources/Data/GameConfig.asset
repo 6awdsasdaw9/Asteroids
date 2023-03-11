@@ -17,7 +17,7 @@ MonoBehaviour:
   playerMaxHP: 3
   maxFuel: 100
   fuelForMove: 0.01
-  fuelFromEnemy: 20
+  fuelFromAliens: 20
   playerBulletSpeed: 9
   playerSuperBulletSpeed: 9
   playerBulletCooldown: 0.5
@@ -28,7 +28,7 @@ MonoBehaviour:
   createSmallAsteroid: 3
   smallAsteroidSpeed: 2.04
   aliensSpawnCooldown: 15
-  aliensMaxHP: 4
+  aliensMaxHP: 1
   aliensSpeed: 1
   DamageConfig:
   - DamageOwner: 1

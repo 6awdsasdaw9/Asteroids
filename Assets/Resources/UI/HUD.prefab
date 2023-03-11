@@ -782,6 +782,7 @@ MonoBehaviour:
   fuelBar: {fileID: 6006539813588335205}
   hpBar: {fileID: 1847817349333881623}
   superBulletCooldownBar: {fileID: 3013738676928521339}
+  aliensTimer: {fileID: 180034035080029250}
 --- !u!1 &6427237932935578489
 GameObject:
   m_ObjectHideFlags: 0

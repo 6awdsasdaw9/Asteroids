@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e25020fc9f6f4ba1a40d147813e01955, type: 3}
   m_Name: GameSettings
   m_EditorClassIdentifier: 
-  playerBulletPoolSize: 20
+  playerBulletPoolSize: 10
   playerSuperBulletPoolSize: 3
   aliensPoolSize: 5
   bigAsteroidsPoolSize: 10

@@ -21,9 +21,8 @@ namespace Code.Enemy
         private readonly float _aliensSpawnCooldown;
         private float _currentAliensCooldown;
 
- 
-        public float CurrentAliensCooldown => _currentAliensCooldown;
         public Action OnDeathAliens;
+        public Action<float> OnUpdateAliensCooldown;
 
         private EnemiesFactory(BigAsteroid.Pool bigAsteroidPool,
             SmallAsteroid.Pool smallAsteroidPool,
@@ -69,7 +68,10 @@ namespace Code.Enemy
                 _currentAliensCooldown = _aliensSpawnCooldown;
             }
             else
+            {
                 UpdateCooldown(ref _currentAliensCooldown);
+                OnUpdateAliensCooldown?.Invoke(_currentAliensCooldown);
+            }
         }
         
         

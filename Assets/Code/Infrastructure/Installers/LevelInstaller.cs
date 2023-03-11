@@ -11,7 +11,7 @@ using Zenject;
 
 namespace Code.Infrastructure.Installers
 {
-    public class LevelInstaller: MonoInstaller<LevelInstaller>
+    public class LevelInstaller : MonoInstaller<LevelInstaller>
     {
         private GameSettings _settings;
         private GamePrefabs _prefabs;
@@ -35,16 +35,8 @@ namespace Code.Infrastructure.Installers
             BindActors();
         }
 
-        private void BindActors()
-        {
-            Container.Bind<PlayerHpBarActor>().AsSingle().NonLazy();
-            Container.Bind<SuperBulletCooldownActor>().AsSingle().NonLazy();
-            Container.Bind<FuelBarActor>().AsSingle().NonLazy();
-            Container.Bind<FuelReplenishActor>().AsSingle().NonLazy();
-            
-        }
 
-        private void BindInputController() => 
+        private void BindInputController() =>
             Container.Bind<InputController>().AsSingle().NonLazy();
 
         private void BindHUD()
@@ -52,42 +44,43 @@ namespace Code.Infrastructure.Installers
             UIDisplay hud = Container.InstantiatePrefabForComponent<UIDisplay>(_prefabs.hud);
             Container.Bind<UIDisplay>().FromInstance(hud);
         }
+
         private void BindPlayer()
         {
-            PlayerMove player = Container.InstantiatePrefabForComponent<PlayerMove>(_prefabs.player,Vector3.zero, Quaternion.identity, null);
+            PlayerMove player =
+                Container.InstantiatePrefabForComponent<PlayerMove>(_prefabs.player, Vector3.zero, Quaternion.identity,
+                    null);
             Container.Bind<PlayerMove>().FromInstance(player);
         }
 
         private void BindEnemiesPool()
         {
             Container.BindInterfacesAndSelfTo<EnemiesFactory>().AsSingle().NonLazy();
-            
+
             Container.BindMemoryPool<BigAsteroid, BigAsteroid.Pool>()
                 .WithInitialSize(_settings.bigAsteroidsPoolSize)
                 .ExpandByOneAtATime()
                 .FromComponentInNewPrefab(_prefabs.bigAsteroid)
                 .UnderTransformGroup("Big Asteroids");
-            
+
             Container.BindMemoryPool<SmallAsteroid, SmallAsteroid.Pool>()
                 .WithInitialSize(_settings.smallAsteroidsPoolSize)
                 .ExpandByOneAtATime()
                 .FromComponentInNewPrefab(_prefabs.smallAsteroid)
                 .UnderTransformGroup("Small Asteroids");
-            
-            
+
+
             Container.BindMemoryPool<Alien, Alien.Pool>()
                 .WithInitialSize(_settings.aliensPoolSize)
                 .ExpandByOneAtATime()
                 .FromComponentInNewPrefab(_prefabs.alien)
                 .UnderTransformGroup("Aliens");
-           
         }
 
         private void BindBulletPools()
         {
-            
             Container.BindInterfacesAndSelfTo<BulletsFactory>().AsSingle().NonLazy();
-            
+
             Container.BindMemoryPool<PlayerBullet, PlayerBullet.Pool>()
                 .WithInitialSize(_settings.playerBulletPoolSize)
                 .ExpandByOneAtATime()
@@ -101,7 +94,15 @@ namespace Code.Infrastructure.Installers
                 .FromComponentInNewPrefab(_prefabs.playerSuperBullet)
                 .UnderTransformGroup(Constants.PlayerSuperBullet)
                 .NonLazy();
-            
+        }
+
+        private void BindActors()
+        {
+            Container.Bind<PlayerHpBarActor>().AsSingle().NonLazy();
+            Container.Bind<SuperBulletCooldownActor>().AsSingle().NonLazy();
+            Container.Bind<FuelBarActor>().AsSingle().NonLazy();
+            Container.Bind<FuelReplenishActor>().AsSingle().NonLazy();
+            Container.Bind<AliensTimerActor>().AsSingle().NonLazy();
         }
     }
 }
