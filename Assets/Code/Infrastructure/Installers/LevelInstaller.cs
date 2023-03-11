@@ -69,7 +69,7 @@ namespace Code.Infrastructure.Installers
                 .FromComponentInNewPrefab(_prefabs.alien)
                 .UnderTransformGroup("Aliens");
            
-            Container.BindInterfacesAndSelfTo<EnemiesFabric>().AsSingle().WithArguments(_config).NonLazy();
+            Container.BindInterfacesAndSelfTo<EnemiesFactory>().AsSingle().WithArguments(_config).NonLazy();
         }
 
         private void BindBulletPools()

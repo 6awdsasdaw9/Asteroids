@@ -19,4 +19,4 @@ MonoBehaviour:
   playerSuperBullet: {fileID: 2269175119032897117, guid: 8d13610e76885e94685140406ced5672, type: 3}
   bigAsteroid: {fileID: 663956038, guid: c68d8dd7f5d9a83449f299b4bba7dc22, type: 3}
   smallAsteroid: {fileID: 7328013809316780821, guid: 0ba57d9908bd15746a0aa13a6bbc507d, type: 3}
-  aliensBullet: {fileID: 2475644117302807696, guid: 278fec83246b9af4e890c9ce5808478f, type: 3}
+  alien: {fileID: 2860894107749565786, guid: 89b3a58e6f1809e44989b1bbd0a1d6ef, type: 3}

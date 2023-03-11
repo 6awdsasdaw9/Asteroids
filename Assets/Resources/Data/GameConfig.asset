@@ -20,21 +20,19 @@ MonoBehaviour:
   fuelFromEnemy: 20
   playerBulletSpeed: 9
   playerSuperBulletSpeed: 9
-  aliensBulletSpeed: 9
+  playerBulletCooldown: 0.5
+  playerSuperBulletCooldown: 3
   asteroidsSpawnCooldown: 7.65
   bigAsteroidSpeed: 3
-  bigAsteroidMaxHP: 1
+  bigAsteroidMaxHP: 2
   createSmallAsteroid: 3
   smallAsteroidSpeed: 2.04
-  smallAsteroidMaxHP: 1
+  aliensMaxHP: 4
+  aliensSpeed: 1
   DamageConfig:
   - DamageOwner: 1
     Damage: 1
   - DamageOwner: 2
     Damage: 3
   - DamageOwner: 3
-    Damage: 1
-  - DamageOwner: 4
-    Damage: 1
-  - DamageOwner: 5
     Damage: 1

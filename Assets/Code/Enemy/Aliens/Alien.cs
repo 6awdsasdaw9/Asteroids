@@ -17,7 +17,7 @@ namespace Code.Enemy.Aliens
         private float _speed;
         
         private DiContainer _container;
-        private EnemiesFabric _factory;
+        private EnemiesFactory _factory;
         
         [Inject]
         private void Construct(DiContainer container, PlayerMove player, GameConfig config)
@@ -45,7 +45,7 @@ namespace Code.Enemy.Aliens
         public void DeSpawn()
         {
             if (_factory == null) 
-                _factory = _container.Resolve<EnemiesFabric>();
+                _factory = _container.Resolve<EnemiesFactory>();
 
             _factory.DeSpawnAlien(this);
         }

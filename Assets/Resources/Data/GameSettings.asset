@@ -13,4 +13,7 @@ MonoBehaviour:
   m_Name: GameSettings
   m_EditorClassIdentifier: 
   playerBulletPoolSize: 20
-  enemyBulletPoolSize: 10
+  playerSuperBulletPoolSize: 3
+  aliensPoolSize: 5
+  bigAsteroidsPoolSize: 10
+  smallAsteroidsPoolSize: 20

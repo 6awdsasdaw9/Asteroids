@@ -33,12 +33,12 @@ namespace Code.Data
         [Range(0.5f, 5)] public float smallAsteroidSpeed = 1.5f;
         
         [Space, Header("Aliens")] 
+        [Range(2, 15)] public float aliensSpawnCooldown = 10;
         [Range(1, 5)] public int aliensMaxHP = 5;
         [Range(0.5f, 5)] public float aliensSpeed = 1.5f;
         
         [Space, Header("Damage")] 
         public List<DamageConfig> DamageConfig;
-
     }
 
     [Serializable]
