@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Code.Enemy.SmallAsteroids
 {
-    public class SmallAsteroid : MonoBehaviour,IEnemy, IDespawer
+    public class SmallAsteroid : MonoBehaviour,IEnemy, IDeSpawner
     {
         [SerializeField] private Rigidbody2D _rb;
         private float _speed;
@@ -17,7 +17,7 @@ namespace Code.Enemy.SmallAsteroids
             _speed = config.smallAsteroidSpeed;
         }
 
-        public void Despawn() => 
+        public void DeSpawn() => 
             _pool.Despawn(this);
 
         public void SetPosition(Vector3 position) => 

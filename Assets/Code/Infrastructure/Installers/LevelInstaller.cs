@@ -66,31 +66,31 @@ namespace Code.Infrastructure.Installers
 
         private void BindBulletPools()
         {
-            Container.BindMemoryPool<Bullet, Bullet.Pool>()
-                .WithId(Constants.PlayerBullet)
+            
+            Container.BindInterfacesAndSelfTo<BulletsFactory>().AsSingle().NonLazy();
+            
+            Container.BindMemoryPool<PlayerBullet, PlayerBullet.Pool>()
                 .WithInitialSize(_settings.playerBulletPoolSize)
                 .ExpandByOneAtATime()
                 .FromComponentInNewPrefab(_prefabs.playerBullet)
                 .UnderTransformGroup(Constants.PlayerBullet)
                 .NonLazy();
-            
-            Container.BindMemoryPool<Bullet, Bullet.Pool>()
-                .WithId(Constants.PlayerSuperBullet)
+
+            Container.BindMemoryPool<PlayerSuperBullet, PlayerSuperBullet.Pool>()
                 .WithInitialSize(_settings.playerSuperBulletPoolSize)
                 .ExpandByOneAtATime()
                 .FromComponentInNewPrefab(_prefabs.playerSuperBullet)
                 .UnderTransformGroup(Constants.PlayerSuperBullet)
                 .NonLazy();
             
-            Container.BindMemoryPool<Bullet, Bullet.Pool>()
+           /* Container.BindMemoryPool<Bullet, Bullet.Pool>()
                 .WithId(Constants.AliensBullet)
                 .WithInitialSize(_settings.aliensBulletPoolSize)
                 .ExpandByOneAtATime()
                 .FromComponentInNewPrefab(_prefabs.aliensBullet)
                 .UnderTransformGroup(Constants.AliensBullet)
-                .NonLazy();
+                .NonLazy();*/
             
-            Container.Bind<BulletsFabric>().AsSingle().NonLazy();
            
         }
     }

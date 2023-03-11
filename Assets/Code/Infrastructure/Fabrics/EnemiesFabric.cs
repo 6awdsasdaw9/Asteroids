@@ -14,7 +14,7 @@ namespace Code.Enemy
         private readonly float _asteroidsSpawnCooldown;
         private float _currentCooldown;
         
-        private readonly byte _createSmallAsteroid;
+        private readonly int _createSmallAsteroid;
 
 
         private EnemiesFabric(

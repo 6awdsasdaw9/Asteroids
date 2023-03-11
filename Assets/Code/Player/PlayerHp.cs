@@ -8,10 +8,10 @@ namespace Code.Player
 {
     public class PlayerHp : MonoBehaviour, IPlayerHealth
     {
-        private byte _currentHP;
-        private byte _maxHP;
-        public byte Current => _currentHP;
-        public byte Max => _maxHP;
+        private int _currentHP;
+        private int _maxHP;
+        public int Current => _currentHP;
+        public int Max => _maxHP;
         
         public event Action OnStatChanged;
 
@@ -22,7 +22,7 @@ namespace Code.Player
             _currentHP = _maxHP;
         }
 
-        public void TakeDamage(byte damage)
+        public void TakeDamage(int damage, DamageOwnerType damageOwner)
         {
             if (Current <= 0)
                 return;

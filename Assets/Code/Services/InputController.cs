@@ -8,5 +8,6 @@ namespace Code.Services
         public bool isPressMove => Input.GetKey(KeyCode.Space);
 
         public bool isPressAttack => Input.GetMouseButtonDown(0);
+        public bool isPressSuperAttack=> Input.GetMouseButtonDown(1);
     }
 }

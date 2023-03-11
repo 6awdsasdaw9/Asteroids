@@ -8,10 +8,10 @@ namespace Code.Enemy.BigAsteroids
 {
     public class BigAsteroidHp : MonoBehaviour, ITakingDamage
     {
-        private IDespawer _despawer;
+        private IDeSpawner _deSpawner;
 
-        private byte _currentHP;
-        private byte _maxHP;
+        private int _currentHP;
+        private int _maxHP;
 
         private Action<Transform> OnDeath;
 
@@ -20,7 +20,7 @@ namespace Code.Enemy.BigAsteroids
         private void Construct(GameConfig config)
         {
             _maxHP = config.bigAsteroidMaxHP;
-            _despawer = GetComponent<IDespawer>();
+            _deSpawner = GetComponent<IDeSpawner>();
         }
 
         public void ResetHealth()
@@ -28,13 +28,17 @@ namespace Code.Enemy.BigAsteroids
             _currentHP = _maxHP;
         }
 
-        public void TakeDamage(byte damage)
+        public void TakeDamage(int damage, DamageOwnerType damageOwner)
         {
             _currentHP -= damage;
             if (_currentHP <= 0)
             {
-                OnDeath?.Invoke(transform);
-                _despawer.Despawn();
+                _deSpawner.DeSpawn();
+                
+                if (damageOwner != DamageOwnerType.PlayerSuperBullet)
+                {
+                    OnDeath?.Invoke(transform);
+                }
             }
         }
 

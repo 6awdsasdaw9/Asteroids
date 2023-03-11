@@ -1,3 +1,4 @@
+using System.Linq;
 using Code.Data;
 using Code.Stats;
 using UnityEngine;
@@ -7,24 +8,19 @@ namespace Code
 {
     public class Attacker : MonoBehaviour
     {
-        [SerializeField] private DamageType _damageType;
+        [SerializeField] private DamageOwnerType _owner;
         [SerializeField] private bool isDestroyingAfterAttack;
         
-        private IDespawer _despawer;
-        private byte _damage;
+        private IDeSpawner _deSpawner;
+        private int _damage;
 
         [Inject]
         private void Construct(GameConfig config)
         {
-            _damage = _damageType switch
-            {
-                DamageType.min => config.minDamage,
-                DamageType.mid => config.midDamage,
-                DamageType.max => config.maxDamage,
-                _ => config.minDamage
-            };
+            var localConfig = config.DamageConfig.FirstOrDefault(d => d.DamageOwner == _owner);
+            if (localConfig != null) _damage = localConfig.Damage;
 
-            TryGetComponent(out _despawer);
+            TryGetComponent(out _deSpawner);
         }
 
 
@@ -32,18 +28,12 @@ namespace Code
         {
             if (col.gameObject.TryGetComponent(out ITakingDamage health))
             {
-                health.TakeDamage(_damage);
+                health.TakeDamage(_damage,_owner);
                 
-                if (_despawer != null && isDestroyingAfterAttack)
-                    _despawer.Despawn();
+                if (_deSpawner != null && isDestroyingAfterAttack)
+                    _deSpawner.DeSpawn();
             }
         }
-        
-        private enum DamageType
-        {
-            min,
-            mid,
-            max
-        }
+ 
     }
 }

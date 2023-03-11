@@ -1,20 +1,22 @@
-﻿using Code.Stats;
+﻿using Code.Data;
+using Code.Stats;
 using UnityEngine;
 
 namespace Code.Enemy.SmallAsteroids
 {
     public class SmallAsteroidHp : MonoBehaviour, ITakingDamage
     {
-        private IDespawer _despawer;
+        private IDeSpawner _deSpawner;
 
         private void Awake()
         {
-            _despawer = GetComponent<IDespawer>();
+            _deSpawner = GetComponent<IDeSpawner>();
         }
+        
 
-        public void TakeDamage(byte damage)
+        public void TakeDamage(int damage, DamageOwnerType damageOwner)
         {
-            _despawer.Despawn();
+            _deSpawner.DeSpawn();
         }
     }
 }

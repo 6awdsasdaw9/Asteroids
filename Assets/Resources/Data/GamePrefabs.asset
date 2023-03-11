@@ -12,9 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 090b3eda6f3a4fb6b6d12a2b76d7fa36, type: 3}
   m_Name: GamePrefabs
   m_EditorClassIdentifier: 
-  player: {fileID: 2104442700, guid: 6a7136b5f1f5d8e479a5707baec841dc, type: 3}
-  playerBullet: {fileID: 8442132942184710692, guid: d42b2966b940ded44bc07658eafc68ad, type: 3}
   hud: {fileID: 9191946979907060833, guid: ff31cf2c00062764fa1750671ad13d07, type: 3}
   hpIcon: {fileID: 3863481473933856675, guid: d4a86e1ef499660429b96d555ddd061a, type: 3}
+  player: {fileID: 2104442700, guid: 6a7136b5f1f5d8e479a5707baec841dc, type: 3}
+  playerBullet: {fileID: 7946118614269238427, guid: d42b2966b940ded44bc07658eafc68ad, type: 3}
+  playerSuperBullet: {fileID: 2269175119032897117, guid: 8d13610e76885e94685140406ced5672, type: 3}
   bigAsteroid: {fileID: 663956038, guid: c68d8dd7f5d9a83449f299b4bba7dc22, type: 3}
   smallAsteroid: {fileID: 7328013809316780821, guid: 0ba57d9908bd15746a0aa13a6bbc507d, type: 3}
+  aliensBullet: {fileID: 2475644117302807696, guid: 278fec83246b9af4e890c9ce5808478f, type: 3}

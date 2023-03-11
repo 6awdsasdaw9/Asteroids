@@ -9,6 +9,6 @@ namespace Code.Enemy
         void SetPosition(Vector3 position);
         void Move();
 
-        void Despawn();
+
     }
 }

@@ -10,10 +10,10 @@ namespace Code.Player
     public class PlayerAttack : MonoBehaviour
     {
         private InputController _inputController;
-        private BulletsFabric _bulletsFactory;
+        private BulletsFactory _bulletsFactory;
 
        [Inject]
-        private void Construct(InputController inputController, BulletsFabric bulletsFactory)
+        private void Construct(InputController inputController, BulletsFactory bulletsFactory)
         {
             _inputController = inputController;
             _bulletsFactory = bulletsFactory;
@@ -23,11 +23,19 @@ namespace Code.Player
         {
             this.UpdateAsObservable()
                 .Where(_ => _inputController.isPressAttack)
-                .Subscribe(_ => Fire())
+                .Subscribe(_ => Attack())
+                .AddTo(this);
+            
+            this.UpdateAsObservable()
+                .Where(_ => _inputController.isPressSuperAttack)
+                .Subscribe(_ => SuperAttack())
                 .AddTo(this);
         }
-        
-        private void Fire() => 
+
+        private void Attack() => 
             _bulletsFactory.SpawnPlayerBullet(transform.position, transform.up);
+
+        private void SuperAttack() => 
+            _bulletsFactory.SpawnPlayerSuperBullet(transform.position, transform.up);
     }
 }

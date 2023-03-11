@@ -1,16 +1,17 @@
 ﻿using System;
+using Code.Data;
 
 namespace Code.Stats
 {
     public interface ITakingDamage
     {
-        void TakeDamage(byte damage);
+        void TakeDamage(int damage,DamageOwnerType damageOwner);
     }
 
     public interface IPlayerHealth : ITakingDamage
     {
         event Action OnStatChanged;
-        byte Current { get; }
-        byte Max { get; }
+        int Current { get; }
+        int Max { get; }
     }
 }

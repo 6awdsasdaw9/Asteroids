@@ -15,16 +15,16 @@ namespace Code.UI
             AddHpIcon(config.playerMaxHP, prefabs.hpIcon);
         }
 
-        public void SetValue(byte currentHP,byte maxHP)
+        public void SetValue(int currentHP,int maxHP)
         {
-            for (byte i = 0; i < maxHP; i++)
+            for (int i = 0; i < maxHP; i++)
             {
                 _hpIcons[i].SetActive(i < currentHP);
             }
         }
-        private void AddHpIcon(byte maxHp, GameObject hpIcon)
+        private void AddHpIcon(int maxHp, GameObject hpIcon)
         {
-            for (byte i = 0; i < maxHp; i++)
+            for (int i = 0; i < maxHp; i++)
             {
                 GameObject hp = Instantiate(hpIcon);
                 hp.transform.SetParent(transform, false);

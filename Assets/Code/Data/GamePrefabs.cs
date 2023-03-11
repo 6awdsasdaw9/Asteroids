@@ -13,8 +13,8 @@ namespace Code.Data
         public GameObject hpIcon;
         
         public PlayerMove player;
-        public Bullet playerBullet;
-        public Bullet playerSuperBullet;
+        public PlayerBullet playerBullet;
+        public PlayerSuperBullet playerSuperBullet;
 
         public BigAsteroid bigAsteroid;
         public SmallAsteroid smallAsteroid;

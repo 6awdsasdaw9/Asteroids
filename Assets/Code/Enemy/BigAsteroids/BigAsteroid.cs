@@ -7,7 +7,7 @@ using Zenject;
 namespace Code.Enemy.BigAsteroids
 {
     [RequireComponent(typeof(Rigidbody2D), typeof(BigAsteroidHp))]
-    public class BigAsteroid : MonoBehaviour, IEnemy, IDespawer
+    public class BigAsteroid : MonoBehaviour, IEnemy, IDeSpawner
     {
         [SerializeField] private Rigidbody2D _rb;
         private Transform _player;
@@ -24,7 +24,7 @@ namespace Code.Enemy.BigAsteroids
             hp = GetComponent<BigAsteroidHp>();
         }
         
-        public void Despawn() => 
+        public void DeSpawn() => 
             _pool.Despawn(this);
 
         public void SetPosition(Vector3 position) => 
@@ -36,6 +36,9 @@ namespace Code.Enemy.BigAsteroids
             transform.up = direction.normalized;
             _rb.AddForce(transform.up * _speed, ForceMode2D.Impulse);
         }
+
+     
+
 
         private Vector3 GetRandomPoint()
         {
