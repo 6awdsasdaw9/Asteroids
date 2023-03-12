@@ -11,6 +11,7 @@ namespace Code.Data
         [Range(0.5f, 5)] public float playerSpeed = 1;
         [Range(1, 10)] public float playerMaxSpeed = 2.8f;
         [Range(1, 5)] public int playerMaxHP = 3;
+        [Range(6, 15)]public float playerTurnSpeed = 9;
         
         [Space, Header("Fuel")] 
         public float maxFuel = 10;
@@ -27,7 +28,7 @@ namespace Code.Data
         [Range(2, 15)] public float asteroidsSpawnCooldown = 5;
         [Range(0.5f, 5)] public float bigAsteroidSpeed = 2;
         [Range(1, 3)] public int bigAsteroidMaxHP = 1;
-        [Range(1, 3)] public int createSmallAsteroid = 3;
+        [Range(1, 5)] public int createSmallAsteroid = 3;
 
         [Space,Header("Small Asteroid")] 
         [Range(0.5f, 5)] public float smallAsteroidSpeed = 1.5f;
@@ -39,6 +40,7 @@ namespace Code.Data
         
         [Space, Header("Damage")] 
         public List<DamageConfig> DamageConfig;
+
     }
 
     [Serializable]

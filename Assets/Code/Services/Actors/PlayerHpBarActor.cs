@@ -1,12 +1,15 @@
-﻿using Code.Player;
-using Code.Stats;
+﻿using Code.Interfaces;
+using Code.Player;
+using Code.UI;
+using ModestTree.Util;
 
-namespace Code.UI
+namespace Code.Services.Actors
 {
     public class PlayerHpBarActor 
     {
         private IPlayerHealth _health;
         private HpBar _hpBar;
+  
 
         private PlayerHpBarActor(UIDisplay hud, PlayerMove player)
         {
@@ -19,5 +22,7 @@ namespace Code.UI
         {
             _hpBar.SetValue(_health.Current, _health.Max);
         }
+        
+
     }
 }

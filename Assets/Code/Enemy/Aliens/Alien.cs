@@ -1,4 +1,6 @@
 ﻿using Code.Data;
+using Code.Infrastructure.Factory;
+using Code.Interfaces;
 using Code.Player;
 using UniRx;
 using UnityEngine;

@@ -24,8 +24,7 @@ namespace Code.Infrastructure.Installers
         private void BindInterfaces() =>
             Container.BindInterfacesTo<GameInstaller>()
                 .FromInstance(this);
-
-
+        
         private void BindStateMachine() =>
             Container.Bind<GameStateMachine>()
                 .AsSingle().WithArguments(new SceneLoader(this), curtain).NonLazy();

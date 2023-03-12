@@ -1,10 +1,10 @@
 ﻿using Code.Data;
-using Code.Enemy;
-using Code.Services;
+using Code.Infrastructure.Factory;
+using Code.Interfaces;
 using UnityEngine;
 using Zenject;
 
-namespace Code
+namespace Code.Bullets
 {
     public class PlayerBullet : Bullet, IDetectable, IDeSpawner
     {

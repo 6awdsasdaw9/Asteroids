@@ -1,4 +1,4 @@
-namespace Code.Services
+namespace Code.Interfaces
 {
     public interface IDetectable
     {

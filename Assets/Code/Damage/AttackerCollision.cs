@@ -1,8 +1,7 @@
-﻿using System;
-using Code.Stats;
+﻿using Code.Interfaces;
 using UnityEngine;
 
-namespace Code
+namespace Code.Damage
 {
     public class AttackerCollision : Attacker
     {

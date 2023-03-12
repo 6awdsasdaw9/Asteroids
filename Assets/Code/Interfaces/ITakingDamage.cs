@@ -1,7 +1,7 @@
 ﻿using System;
 using Code.Data;
 
-namespace Code.Stats
+namespace Code.Interfaces
 {
     public interface ITakingDamage
     {

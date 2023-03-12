@@ -1,7 +1,6 @@
 using System;
 using Code.Data;
 using Code.Services;
-using Code.Stats;
 using UniRx;
 using UniRx.Triggers;
 using UnityEngine;
@@ -17,9 +16,11 @@ namespace Code.Player
 
         private float _speed;
         private float _maxSpeed;
+        private float  turnSpeed;
         
         private InputController _inputController;
         private IObservable<Unit> _updateObservable;
+      
 
         [Inject]
         private void Construct(InputController inputController,GameConfig config)
@@ -27,6 +28,7 @@ namespace Code.Player
             _inputController = inputController;
             _speed = config.playerSpeed;
             _maxSpeed = config.playerMaxSpeed;
+            turnSpeed = config.playerTurnSpeed;
         }
 
         private void Awake()
@@ -46,7 +48,7 @@ namespace Code.Player
         private void TurnForward()
         {
             Vector2 direction = _inputController.mousePosition - (Vector2)transform.position;
-            transform.up = direction.normalized;
+            transform.up = Vector3.Lerp(transform.up,direction.normalized,turnSpeed * Time.deltaTime);
         }
 
         private void Move()

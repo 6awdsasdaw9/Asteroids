@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 2104442704}
   - component: {fileID: 8698772158765010741}
   - component: {fileID: 8827842147811413648}
+  - component: {fileID: 71237745082745378}
   m_Layer: 7
   m_Name: Player
   m_TagString: Untagged
@@ -108,7 +109,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2, y: 2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -116,9 +117,9 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0.011197329, y: 0.41244245}
-      - {x: -0.3093351, y: -0.37948674}
-      - {x: 0.33172977, y: -0.38074702}
+    - - {x: 0.024964929, y: 0.8162918}
+      - {x: -0.35114902, y: -0.45816272}
+      - {x: 0.4010696, y: -0.45484346}
 --- !u!50 &1109516808530731943
 Rigidbody2D:
   serializedVersion: 4
@@ -202,3 +203,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce983abfe365411b9f5ae637680d29d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &71237745082745378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2928034533552197876}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f04f3496f4e6194882178ca21168161, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _hp: {fileID: 8827842147811413648}
+  _move: {fileID: 2104442700}
+  _attack: {fileID: 2104442704}

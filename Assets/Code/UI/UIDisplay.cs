@@ -8,5 +8,12 @@ namespace Code.UI
         public HpBar hpBar;
         public SuperBulletCooldownBar superBulletCooldownBar;
         public AliensTimer aliensTimer;
+        public GameObject LosePanel;
+
+        public void ShowLosePanel()
+        {
+            LosePanel.SetActive(true);
+        }
+
     }
 }

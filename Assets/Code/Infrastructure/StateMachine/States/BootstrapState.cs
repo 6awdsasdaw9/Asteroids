@@ -12,7 +12,6 @@ namespace Code.Infrastructure.StateMachine.States
         {
             _stateMachine = stateMachine;
             _sceneLoader = sceneLoader;
-
         }
 
         public void Enter()

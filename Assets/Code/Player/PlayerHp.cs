@@ -1,6 +1,6 @@
 ﻿using System;
 using Code.Data;
-using Code.Stats;
+using Code.Interfaces;
 using UnityEngine;
 using Zenject;
 
@@ -12,8 +12,9 @@ namespace Code.Player
         private int _maxHP;
         public int Current => _currentHP;
         public int Max => _maxHP;
-        
+
         public event Action OnStatChanged;
+        public event Action OnDeath;
 
         [Inject]
         private void Construct(GameConfig config)

@@ -1,8 +1,6 @@
-using Code.Data;
-using Code.Player;
 using UnityEngine;
 
-namespace Code.Enemy
+namespace Code.Interfaces
 {
     public interface IEnemy
     {

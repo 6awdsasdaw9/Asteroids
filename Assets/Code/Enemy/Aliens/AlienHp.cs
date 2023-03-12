@@ -1,6 +1,6 @@
 ﻿using System;
 using Code.Data;
-using Code.Stats;
+using Code.Interfaces;
 using UnityEngine;
 using Zenject;
 

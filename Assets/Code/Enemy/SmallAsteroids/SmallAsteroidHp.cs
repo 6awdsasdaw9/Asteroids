@@ -1,5 +1,5 @@
 ﻿using Code.Data;
-using Code.Stats;
+using Code.Interfaces;
 using UnityEngine;
 
 namespace Code.Enemy.SmallAsteroids

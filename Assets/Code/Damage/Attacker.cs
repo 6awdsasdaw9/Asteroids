@@ -1,10 +1,10 @@
 using System.Linq;
 using Code.Data;
-using Code.Stats;
+using Code.Interfaces;
 using UnityEngine;
 using Zenject;
 
-namespace Code
+namespace Code.Damage
 {
     public class Attacker : MonoBehaviour
     {

@@ -1,6 +1,7 @@
 ﻿using System;
 using Code.Data;
 using Code.Enemy;
+using Code.Infrastructure.Factory;
 using Code.Services;
 using UniRx;
 using UniRx.Triggers;

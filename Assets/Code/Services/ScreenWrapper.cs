@@ -1,7 +1,7 @@
-using Code.Services;
+using Code.Interfaces;
 using UnityEngine;
 
-namespace Code
+namespace Code.Services
 {
     public class ScreenWrapper : MonoBehaviour, IDetectable
     {

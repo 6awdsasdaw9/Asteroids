@@ -1,4 +1,4 @@
-namespace Code
+namespace Code.Interfaces
 {
     public interface IDeSpawner
     {

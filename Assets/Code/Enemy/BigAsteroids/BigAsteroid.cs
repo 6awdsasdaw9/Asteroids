@@ -1,6 +1,6 @@
 ﻿using Code.Data;
+using Code.Interfaces;
 using Code.Player;
-using Code.Stats;
 using UnityEngine;
 using Zenject;
 

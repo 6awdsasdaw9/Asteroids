@@ -1,10 +1,6 @@
-﻿using Code.Data;
-using Code.Services;
-using UniRx;
-using UnityEngine;
-using Zenject;
+﻿using UnityEngine;
 
-namespace Code
+namespace Code.Bullets
 {
     public class Bullet : MonoBehaviour
     {

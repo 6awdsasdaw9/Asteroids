@@ -1,9 +1,7 @@
 ﻿using Code.Player;
-using Code.Stats;
-using UnityEngine;
-using Zenject;
+using Code.UI;
 
-namespace Code.UI
+namespace Code.Services.Actors
 {
     public class SuperBulletCooldownActor 
     {

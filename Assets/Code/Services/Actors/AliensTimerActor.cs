@@ -1,6 +1,7 @@
-﻿using Code.Enemy;
+﻿using Code.Infrastructure.Factory;
+using Code.UI;
 
-namespace Code.UI
+namespace Code.Services.Actors
 {
     public class AliensTimerActor
     {

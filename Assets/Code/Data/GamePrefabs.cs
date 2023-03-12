@@ -1,4 +1,5 @@
-﻿using Code.Enemy.Aliens;
+﻿using Code.Bullets;
+using Code.Enemy.Aliens;
 using Code.Enemy.BigAsteroids;
 using Code.Enemy.SmallAsteroids;
 using Code.Player;

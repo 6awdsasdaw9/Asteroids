@@ -3,7 +3,7 @@ using Code.Data;
 using UnityEngine;
 using Zenject;
 
-namespace Code.Stats
+namespace Code.Player
 {
     public class PlayerFuel : MonoBehaviour
     {

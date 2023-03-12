@@ -6,7 +6,7 @@ using Code.Enemy.SmallAsteroids;
 using UnityEngine;
 using Zenject;
 
-namespace Code.Enemy
+namespace Code.Infrastructure.Factory
 {
     public class EnemiesFactory : ITickable
     {

@@ -1,8 +1,7 @@
 using Code.Player;
-using Code.Stats;
-using Zenject;
+using Code.UI;
 
-namespace Code.UI
+namespace Code.Services.Actors
 {
     public class FuelBarActor
     { 
