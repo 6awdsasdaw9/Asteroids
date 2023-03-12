@@ -32,11 +32,11 @@ namespace ModestTree
 
         public static void Warn(string message, params object[] args)
         {
-/*#if NOT_UNITY3D
+#if NOT_UNITY3D
             Console.WriteLine(message.Fmt(args));
 #else
             UnityEngine.Debug.LogWarning(message.Fmt(args));
-#endif*/
+#endif
         }
 
         /////////////
